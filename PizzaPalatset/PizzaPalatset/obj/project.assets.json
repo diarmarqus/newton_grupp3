@@ -688,23 +688,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Max\\.nuget\\packages\\": {},
+    "C:\\Users\\chris\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\PizzaPalatset\\newton_grupp3\\PizzaPalatset\\PizzaPalatset\\PizzaPalatset.csproj",
+      "projectUniqueName": "C:\\Users\\chris\\Source\\Repos\\newton_grupp3\\PizzaPalatset\\PizzaPalatset\\PizzaPalatset.csproj",
       "projectName": "PizzaPalatset",
-      "projectPath": "C:\\Projects\\PizzaPalatset\\newton_grupp3\\PizzaPalatset\\PizzaPalatset\\PizzaPalatset.csproj",
-      "packagesPath": "C:\\Users\\Max\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\PizzaPalatset\\newton_grupp3\\PizzaPalatset\\PizzaPalatset\\obj\\",
+      "projectPath": "C:\\Users\\chris\\Source\\Repos\\newton_grupp3\\PizzaPalatset\\PizzaPalatset\\PizzaPalatset.csproj",
+      "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chris\\Source\\Repos\\newton_grupp3\\PizzaPalatset\\PizzaPalatset\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Max\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
