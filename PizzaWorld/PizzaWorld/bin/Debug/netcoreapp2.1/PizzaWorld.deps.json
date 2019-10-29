@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "exeption/1.0.0": {
+      "PizzaWorld/1.0.0": {
         "runtime": {
-          "exeption.dll": {}
+          "PizzaWorld.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "exeption/1.0.0": {
+    "PizzaWorld/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

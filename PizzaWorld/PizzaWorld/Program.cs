@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace TonysPizza
+namespace PizzaWorld
 {
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Console.WriteLine("Diar Testar");
         }
     }
 }

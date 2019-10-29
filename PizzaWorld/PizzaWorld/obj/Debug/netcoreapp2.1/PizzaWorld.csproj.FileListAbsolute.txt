@@ -1,0 +1,11 @@
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\bin\Debug\netcoreapp2.1\PizzaWorld.deps.json
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\bin\Debug\netcoreapp2.1\PizzaWorld.runtimeconfig.json
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\bin\Debug\netcoreapp2.1\PizzaWorld.runtimeconfig.dev.json
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\bin\Debug\netcoreapp2.1\PizzaWorld.dll
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\bin\Debug\netcoreapp2.1\PizzaWorld.pdb
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\obj\Debug\netcoreapp2.1\PizzaWorld.csprojAssemblyReference.cache
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\obj\Debug\netcoreapp2.1\PizzaWorld.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\obj\Debug\netcoreapp2.1\PizzaWorld.AssemblyInfoInputs.cache
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\obj\Debug\netcoreapp2.1\PizzaWorld.AssemblyInfo.cs
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\obj\Debug\netcoreapp2.1\PizzaWorld.dll
+C:\Users\Administrator\Source\Repos\newton_grupp3\PizzaWorld\PizzaWorld\obj\Debug\netcoreapp2.1\PizzaWorld.pdb

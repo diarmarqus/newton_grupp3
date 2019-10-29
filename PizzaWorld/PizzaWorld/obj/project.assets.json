@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\newton_grupp3\\exeption\\exeption\\exeption.csproj",
-      "projectName": "exeption",
-      "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\newton_grupp3\\exeption\\exeption\\exeption.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\newton_grupp3\\PizzaWorld\\PizzaWorld\\PizzaWorld.csproj",
+      "projectName": "PizzaWorld",
+      "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\newton_grupp3\\PizzaWorld\\PizzaWorld\\PizzaWorld.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\newton_grupp3\\exeption\\exeption\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\newton_grupp3\\PizzaWorld\\PizzaWorld\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
