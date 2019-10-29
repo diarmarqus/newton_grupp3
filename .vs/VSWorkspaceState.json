@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PizzaPalatset",
+    "\\PizzaPalatset\\PizzaPalatset\\bin\\Debug",
+    "\\PizzaPalatset\\PizzaPalatset\\bin\\Debug\\netcoreapp2.1",
+    "\\PizzaPalatset\\PizzaPalatset\\bin\\Release",
+    "\\PizzaPalatset\\PizzaPalatset\\bin\\Release\\netcoreapp2.1"
   ],
   "PreviewInSolutionExplorer": false
 }
