@@ -7,6 +7,7 @@ namespace PizzaWorld
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Console.WriteLine("Diar Testar");
         }
     }
 }
