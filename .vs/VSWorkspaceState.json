@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PizzaPalatset",
+    "\\PizzaPalatset\\PizzaPalatset"
   ],
+  "SelectedNode": "\\PizzaPalatset\\PizzaPalatset\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

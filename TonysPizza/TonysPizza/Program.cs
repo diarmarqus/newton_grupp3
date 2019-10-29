@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace PizzaPalatset
+namespace TonysPizza
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello jsbgg");
+            Console.WriteLine("Hello World!");
         }
     }
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaPalatset", "PizzaPalatset\PizzaPalatset.csproj", "{7141092F-2F63-4040-A468-1769A445C22E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TonysPizza", "TonysPizza\TonysPizza.csproj", "{49640445-EDCD-436B-931D-629519735D3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7141092F-2F63-4040-A468-1769A445C22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7141092F-2F63-4040-A468-1769A445C22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7141092F-2F63-4040-A468-1769A445C22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7141092F-2F63-4040-A468-1769A445C22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49640445-EDCD-436B-931D-629519735D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49640445-EDCD-436B-931D-629519735D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49640445-EDCD-436B-931D-629519735D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49640445-EDCD-436B-931D-629519735D3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B05F42C3-DD50-48DB-ADB3-8D33F6F27C57}
+		SolutionGuid = {738AAD9E-173F-4735-AA22-0DCFB79F2E81}
 	EndGlobalSection
 EndGlobal
