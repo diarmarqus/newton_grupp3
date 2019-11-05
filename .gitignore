@@ -6,4 +6,6 @@
 /.vs
 /PizzaWorld/PizzaWorld/obj/Debug/netcoreapp2.1
 /PizzaWorld/PizzaWorld/obj/Release/netcoreapp2.1
+/PizzaWorld/PizzaWorld/bin/Debug/netcoreapp2.1
+/PizzaWorld/PizzaWorld/bin/Release/netcoreapp2.1
 /PizzaWorld/PizzaWorld/obj
