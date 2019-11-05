@@ -10,6 +10,7 @@ namespace PizzaWorld
             Console.WriteLine("Diar Testar");
             Console.WriteLine("hello from molle");
             Console.WriteLine("Hej från Aata");
+            Console.WriteLine("Hej Aata här");
         }
     }
 }
