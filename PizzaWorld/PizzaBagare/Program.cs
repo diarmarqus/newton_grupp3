@@ -6,7 +6,8 @@ namespace PizzaBagare
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("PizzaBagare Terminal");
+            Console.WriteLine("--------------------");
         }
     }
 }

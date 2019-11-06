@@ -14,4 +14,4 @@
 /PizzaWorld/PizzaBagare/bin/Debug/netcoreapp3.0
 /PizzaWorld/PizzaBagare/bin/Release/netcoreapp3.0
 /PizzaWorld/PizzaBagare/obj/
-/PizzaWorld/PizzaBagare
+!*.[Cc]ache/**
