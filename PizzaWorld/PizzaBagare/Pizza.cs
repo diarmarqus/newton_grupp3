@@ -6,14 +6,13 @@ namespace PizzaBagare
 {
     class Pizza
     {
-        public Pizza(string name, string size, string crust)
+        public Pizza(string name, string size = "Standard")
         {
             this.Name = name;
             this.Size = size;
-            this.Crust = crust;
         }
 
-        public Pizza(string name, List<string> ingredients, string size, string crust)
+        public Pizza(string name, List<string> ingredients, string size, string crust = null)
         {
             this.Name = name;
             this.Ingredients = ingredients;

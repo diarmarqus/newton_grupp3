@@ -6,17 +6,17 @@ namespace PizzaBagare
 {
     class Order
     {
-        public Order(int orderNumber, List<Pizza> pizzas, List<Extra> extras, OrderStatus orderStatus = OrderStatus.New)
+        public Order(int orderNumber, List<Pizza> pizzas, List<Extra> extras, OrderStatus status = OrderStatus.New)
         {
             OrderNumber = orderNumber;
             Pizzas = pizzas;
             Extras = extras;
-            OrderStatus = orderStatus;
+            Status = status;
         }
 
         public int OrderNumber { get; set; }
         public List<Pizza> Pizzas { get; set; }
         public List<Extra> Extras { get; set; }
-        public OrderStatus OrderStatus { get; set; }
+        public OrderStatus Status { get; set; }
     }
 }
