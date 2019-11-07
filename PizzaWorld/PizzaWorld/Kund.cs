@@ -7,5 +7,6 @@ namespace PizzaWorld
     class Kund
     {
         public int språk { get; set; }
+        public int test { get; set; }
     }
 }
