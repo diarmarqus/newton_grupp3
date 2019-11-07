@@ -15,3 +15,5 @@
 /PizzaWorld/PizzaBagare/bin/Release/netcoreapp3.0
 /PizzaWorld/PizzaBagare/obj/
 !*.[Cc]ache/**
+/PizzaWorld/UtlamningsTerminal/obj
+/PizzaWorld/UtlamningsTerminal/bin/Debug/netcoreapp2.1
