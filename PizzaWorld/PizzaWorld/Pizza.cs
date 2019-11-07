@@ -4,9 +4,7 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    class Kund
+    class Pizza
     {
-        public int språk { get; set; }
-        public int test { get; set; }
     }
 }
