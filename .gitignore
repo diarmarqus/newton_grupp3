@@ -9,5 +9,11 @@
 /PizzaWorld/PizzaWorld/bin/Debug/netcoreapp2.1
 /PizzaWorld/PizzaWorld/bin/Release/netcoreapp2.1
 /PizzaWorld/PizzaWorld/obj/
-/PizzaWorld/PizzaBagare/obj
+/PizzaWorld/PizzaBagare/obj/Debug/netcoreapp3.0
+/PizzaWorld/PizzaBagare/obj/Release/netcoreapp3.0
+/PizzaWorld/PizzaBagare/bin/Debug/netcoreapp3.0
+/PizzaWorld/PizzaBagare/bin/Release/netcoreapp3.0
+/PizzaWorld/PizzaBagare/obj/
+!*.[Cc]ache/**
 /PizzaWorld/UtlamningsTerminal/obj
+/PizzaWorld/UtlamningsTerminal/bin/Debug/netcoreapp2.1
