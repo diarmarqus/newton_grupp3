@@ -6,5 +6,6 @@ namespace PizzaWorld
 {
     class Payment
     {
+
     }
 }

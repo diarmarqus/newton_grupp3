@@ -4,7 +4,8 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    class Language
+    public class Language
     {
+        
     }
 }
