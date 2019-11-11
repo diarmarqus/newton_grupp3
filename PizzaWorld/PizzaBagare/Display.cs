@@ -53,6 +53,7 @@ namespace PizzaBagare
 
         public void PrintOrderDetails(Order order)
         {
+            Console.Clear();
             PrintTopInfo("Order #" + order.OrderNumber);
 
             Console.WriteLine("Pizza:");
@@ -61,7 +62,7 @@ namespace PizzaBagare
                 PrintPizza(pizza);
             }
 
-            Console.WriteLine("Tillbehör:");
+            Console.WriteLine("\nTillbehör:");
             foreach (Extra extra in order.Extras)
             {
                 Console.WriteLine($"- {extra.Item} {extra.Size}");

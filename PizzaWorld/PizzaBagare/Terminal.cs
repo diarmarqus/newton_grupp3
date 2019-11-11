@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Timers;
 
 namespace PizzaBagare
 {
@@ -10,43 +12,80 @@ namespace PizzaBagare
     /// </summary>
     class Terminal
     {
-        public List<Order> Orders { get; private set; }
-        public Chef Chef { get; private set; }
+        private List<Order> Orders { get; set; }
+        private Chef Chef { get; set; }
 
-        // Kör terminalen
+        private System.Threading.Timer _timer;
+
+        // Kör programmet
         public void Start(Data data, Display display)
         {
+            if (_timer != null)
+            {
+                _timer.Dispose();
+            }
+
+            // Visa loginskärmen om ingen bagare är inloggad
             if (Chef == null)
             {
                 Login(data, display);
             }
 
-            display.PrintTopInfo("Inloggad: " + Chef.Name);
-            display.PrintOrders(Orders);
-            display.PrintBottomInfo();
+            Run(data, display);
+        }
+
+        private void Run(Data data, Display display)
+        {
+            DisplayOrders(display);
 
             int index = 0;
-            char input;
 
             while (index < 1 || index > Orders.Count)
             {
-                input = GetInput(data, display);
+                char input = Console.ReadKey(true).KeyChar;
+
+                if (input == 'l')
+                {
+                    Chef = null;
+                    return;
+                }
 
                 int.TryParse(input.ToString(), out index);
             }
 
-            Console.Clear();
+            // Ta bort timer efter att bagare bytt sida
+            _timer.Dispose();
+
+            // Hämtar vald order från listan Orders via index
             Order order = GetOrderDetails(index);
+
+            DisplayOrderDetails(order, display);
+        }
+
+        private void DisplayOrders(Display display)
+        {
+            // Uppdaterar ordersidan var 5e sekund (TimeSpan.FromSeconds(5))
+            _timer = new System.Threading.Timer((e) =>
+            {
+                display.PrintTopInfo("Inloggad: " + Chef.Name);
+                display.PrintOrders(Orders);
+                display.PrintBottomInfo();
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+        }
+
+        private void DisplayOrderDetails(Order order, Display display)
+        {
+            //char input;
 
             display.PrintOrderDetails(order);
             display.PrintBottomInfo("Details");
 
-            input = GetInput(data, display);
+            //input = Console.ReadKey(true).KeyChar;
 
-            UpdateOrder(input, order);
+            UpdateOrder(Console.ReadKey(true).KeyChar, order);
         }
 
-        private static void UpdateOrder(char input, Order order)
+        private void UpdateOrder(char input, Order order)
         {
             switch (input)
             {
@@ -55,29 +94,18 @@ namespace PizzaBagare
                     break;
                 case '2':
                     order.Status = OrderStatus.Done;
-                    break;
-                case '3':
+                    // Ta bort ordern efter 1 sekund
+                    Task.Delay(1000).ContinueWith(t => Orders.Remove(order));
                     break;
                 default:
                     break;
             }
         }
 
-        private char GetInput(Data data, Display display)
-        {
-            char input = Console.ReadKey(true).KeyChar;
-
-            if (input == 'l')
-            {
-                Chef = null;
-                Start(data, display);
-            }
-
-            return input;
-        }
+        //private char GetInput() => Console.ReadKey(true).KeyChar;
 
         // Inloggning för bagare
-        public void Login(Data data, Display display)
+        private void Login(Data data, Display display)
         {
             display.PrintTopInfo();
 
@@ -111,7 +139,7 @@ namespace PizzaBagare
         }
 
         // Hämta all info om vald produkt via index
-        public Order GetOrderDetails(int index)
+        private Order GetOrderDetails(int index)
         {
             try
             {
@@ -123,7 +151,5 @@ namespace PizzaBagare
                 return null;
             }
         }
-
-
     }
 }
