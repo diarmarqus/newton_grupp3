@@ -6,5 +6,16 @@ namespace PizzaWorld
 {
     class Receipt
     {
+        private int ReceiptNr;
+
+        public Receipt()
+        {
+            this.ReceiptNr = //sätt random nr.
+        }
+
+        public void OutCheckMessage()
+        {
+
+        }
     }
 }
