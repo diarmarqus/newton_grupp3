@@ -1,22 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 
 namespace PizzaBagare
 {
+    /// <summary>
+    /// Genera data för Orders/Chefs
+    /// </summary>
     class Data
     {
         public List<Order> Orders = new List<Order>();
         public List<Chef> Chefs = new List<Chef>();
+        Random rnd = new Random();
 
         public Data()
         {
+            Timer timer = new Timer(1000 * 10);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
             AddData();
         }
 
-        /// <summary>
-        /// Genera data för Orders/Chefs
-        /// </summary>
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Orders.Add(new Order(
+            rnd.Next(1000, 5999),
+            new List<Pizza>() {
+                new Pizza("Vesuvio"),
+                new Pizza("Kebab")
+            },
+            new List<Extra>() {
+                new Extra("Cola", "Medium"),
+                new Extra("Sallad")
+            }));
+        }
+
         public void AddData()
         {
             Orders.Add(new Order(

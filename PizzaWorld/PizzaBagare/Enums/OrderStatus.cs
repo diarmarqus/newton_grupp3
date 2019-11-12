@@ -12,9 +12,11 @@ namespace PizzaBagare
     { 
         [Description("Ny")]
         New,
-        [Description("Ugn")]
+        [Description("I ugn")]
         InOven,
-        [Description("Klar")]
-        Done 
+        [Description("Ta ut")]
+        Done,
+        [Description("Slutförd")]
+        Complete
     }
 }

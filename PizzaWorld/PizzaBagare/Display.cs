@@ -9,7 +9,7 @@ namespace PizzaBagare
     /// </summary>
     class Display
     {
-        public void PrintTopInfo(string s = "Logga in")
+        public void PrintTopInfo(string s)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -25,29 +25,29 @@ namespace PizzaBagare
             Console.WriteLine("-----------------------");
             if (string.IsNullOrWhiteSpace(s))
             {
-                Console.WriteLine("# Välj order | 'L' logga ut");
+                Console.WriteLine(" # Välj order |'L'ogga ut");
             }
             else
             {
-                Console.WriteLine("1. Sätt in i ugn");
-                Console.WriteLine("2. Klar");
-                Console.WriteLine("3. Tillbaka");
+                Console.WriteLine(" 1. Sätt in i ugn");
+                Console.WriteLine(" 2. Slutförd");
+                Console.WriteLine(" 3. Tillbaka");
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void PrintOrders(List<Order> orders)
         {
-            Console.WriteLine("#   | Ordernumber | Status");
+            Console.WriteLine(" #   | Order# | Status");
 
             for (int i = 0; i < orders.Count; i++)
             {
-                Console.WriteLine(string.Format("#{0,-2} | {1,-11} | {2}", i + 1, orders[i].OrderNumber, orders[i].Status.GetDescription()));
+                Console.WriteLine(string.Format(" #{0,-2} | {1,-6} | {2}", i + 1, orders[i].OrderNumber, orders[i].Status.GetDescription()));
             }
 
             for (int i = 12; i > orders.Count; i--)
             {
-                Console.WriteLine("#   |             |");
+                Console.WriteLine(" #   |        |");
             }
         }
 
@@ -56,16 +56,16 @@ namespace PizzaBagare
             Console.Clear();
             PrintTopInfo("Order #" + order.OrderNumber);
 
-            Console.WriteLine("Pizza:");
+            Console.WriteLine(" Pizza:");
             foreach (Pizza pizza in order.Pizzas)
             {
                 PrintPizza(pizza);
             }
 
-            Console.WriteLine("\nTillbehör:");
+            Console.WriteLine("\n Tillbehör:");
             foreach (Extra extra in order.Extras)
             {
-                Console.WriteLine($"- {extra.Item} {extra.Size}");
+                Console.WriteLine($" - {extra.Item} {extra.Size}");
             }
 
             for (int i = 11; i > order.Pizzas.Count + order.Extras.Count; i--)
@@ -74,15 +74,21 @@ namespace PizzaBagare
             }
         }
 
+        public void PrintOrderNumber(Order order)
+        {
+            PrintTopInfo("Utskrift");
+            Console.WriteLine("Skriver ut ordernummer " + order.OrderNumber + "...");
+        }
+
         private void PrintPizza(Pizza pizza)
         {
             if (pizza.Ingredients == null)
             {
-                Console.WriteLine($"- {pizza.Name} {pizza.Size} {pizza.Crust}");
+                Console.WriteLine($" - {pizza.Name} {pizza.Size} {pizza.Crust}");
             }
             else
             {
-                Console.Write($"- {pizza.Name} (");
+                Console.Write($" - {pizza.Name} (");
                 PrintIngredients(pizza);
                 Console.WriteLine($") {pizza.Size} {pizza.Crust}");
             }

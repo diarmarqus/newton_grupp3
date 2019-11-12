@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -25,7 +26,7 @@ namespace PizzaBagare
                 _timer.Dispose();
             }
 
-            // Visa loginskärmen om ingen bagare är inloggad
+            // Visa loginskärmen om ingen är inloggad
             if (Chef == null)
             {
                 Login(data, display);
@@ -36,7 +37,7 @@ namespace PizzaBagare
 
         private void Run(Data data, Display display)
         {
-            DisplayOrders(display);
+            DisplayOrders(data, display);
 
             int index = 0;
 
@@ -53,20 +54,23 @@ namespace PizzaBagare
                 int.TryParse(input.ToString(), out index);
             }
 
-            // Ta bort timer efter att bagare bytt sida
+            // Ta bort timer efter sidbyte
             _timer.Dispose();
 
-            // Hämtar vald order från listan Orders via index
+            // Hämtar vald order från Orders via index
             Order order = GetOrderDetails(index);
 
             DisplayOrderDetails(order, display);
         }
 
-        private void DisplayOrders(Display display)
+        private void SetOrders(Data data) => this.Orders = data.Orders;
+
+        private void DisplayOrders(Data data, Display display)
         {
             // Uppdaterar ordersidan var 5e sekund (TimeSpan.FromSeconds(5))
             _timer = new System.Threading.Timer((e) =>
             {
+                SetOrders(data);
                 display.PrintTopInfo("Inloggad: " + Chef.Name);
                 display.PrintOrders(Orders);
                 display.PrintBottomInfo();
@@ -75,27 +79,26 @@ namespace PizzaBagare
 
         private void DisplayOrderDetails(Order order, Display display)
         {
-            //char input;
-
             display.PrintOrderDetails(order);
             display.PrintBottomInfo("Details");
 
-            //input = Console.ReadKey(true).KeyChar;
-
-            UpdateOrder(Console.ReadKey(true).KeyChar, order);
+            UpdateOrder(Console.ReadKey(true).KeyChar, order, display);
         }
 
-        private void UpdateOrder(char input, Order order)
+        private void UpdateOrder(char input, Order order, Display display)
         {
             switch (input)
             {
                 case '1':
                     order.Status = OrderStatus.InOven;
+                    Task.Delay(TimeSpan.FromSeconds(5)).ContinueWith(t => order.Status = OrderStatus.Done);
                     break;
                 case '2':
-                    order.Status = OrderStatus.Done;
-                    // Ta bort ordern efter 1 sekund
-                    Task.Delay(1000).ContinueWith(t => Orders.Remove(order));
+                    order.Status = OrderStatus.Complete;
+                    display.PrintOrderNumber(order);
+                    Thread.Sleep(3000);
+                    // Ta bort ordern efter delay
+                    Task.Delay(TimeSpan.FromSeconds(5)).ContinueWith(t => Orders.Remove(order));
                     break;
                 default:
                     break;
@@ -107,11 +110,11 @@ namespace PizzaBagare
         // Inloggning för bagare
         private void Login(Data data, Display display)
         {
-            display.PrintTopInfo();
+            display.PrintTopInfo("Logga in");
 
             VerifyPin(data, display);
 
-            this.Orders = data.Orders;
+            SetOrders(data);
         }
 
         // Loop tills korrekt pin är angedd 
