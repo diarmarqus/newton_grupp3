@@ -19,11 +19,11 @@ namespace PizzaBagare
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public void PrintBottomInfo(string s = "")
+        public void PrintBottomInfo(bool IsOrderDetails)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("-----------------------");
-            if (string.IsNullOrWhiteSpace(s))
+            if (!IsOrderDetails)
             {
                 Console.WriteLine(" # Välj order |'L'ogga ut");
             }
@@ -42,7 +42,11 @@ namespace PizzaBagare
 
             for (int i = 0; i < orders.Count; i++)
             {
-                Console.WriteLine(string.Format(" #{0,-2} | {1,-6} | {2}", i + 1, orders[i].OrderNumber, orders[i].Status.GetDescription()));
+                Console.WriteLine(string.Format(
+                    " #{0,-2} | {1,-6} | {2}", 
+                    i + 1, 
+                    orders[i].OrderNumber, 
+                    orders[i].Status.GetDescription()));
             }
 
             for (int i = 12; i > orders.Count; i--)
@@ -68,7 +72,7 @@ namespace PizzaBagare
                 Console.WriteLine($" - {extra.Item} {extra.Size}");
             }
 
-            for (int i = 11; i > order.Pizzas.Count + order.Extras.Count; i--)
+            for (int i = 7; i > order.Pizzas.Count + order.Extras.Count; i--)
             {
                 Console.WriteLine();
             }

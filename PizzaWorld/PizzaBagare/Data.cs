@@ -10,23 +10,22 @@ namespace PizzaBagare
     /// </summary>
     class Data
     {
-        private List<Order> _dataOrders = new List<Order>();
-
         public List<Order> Orders = new List<Order>();
         public List<Chef> Chefs = new List<Chef>();
 
+        private List<Order> _dataOrders = new List<Order>();
         private Random _rnd = new Random();
         private int _counter = 0;
  
         public Data()
         {
             AddData();
-            Timer timer = new Timer(1000 * 6);
-            timer.Elapsed += Timer_Elapsed;
+            Timer timer = new Timer(1000 * 10);
+            timer.Elapsed += TimedOrders;
             timer.Start();
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void TimedOrders(object sender, ElapsedEventArgs e)
         {
             if (_counter >= _dataOrders.Count)
             {
@@ -37,7 +36,10 @@ namespace PizzaBagare
             {
                 Order order = _dataOrders[_counter];
 
-                Orders.Add(new Order(_rnd.Next(1000, 4999), order.Pizzas, order.Extras));
+                Orders.Add(new Order(
+                    _rnd.Next(1000, 4999), 
+                    order.Pizzas, 
+                    order.Extras));
             }
             catch (Exception ex)
             {
@@ -52,7 +54,7 @@ namespace PizzaBagare
         public void AddData()
         {
             _dataOrders.Add(new Order(
-                4404,
+                1,
                 new List<Pizza>() {
                     new Pizza("Vesuvio"),
                     new Pizza("Kebab")
@@ -63,7 +65,7 @@ namespace PizzaBagare
                 }));
 
             _dataOrders.Add(new Order(
-                1110,
+                2,
                 new List<Pizza>() {
                     new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard", "Inbakad"),
                     new Pizza("Kebab")
@@ -75,7 +77,7 @@ namespace PizzaBagare
                 }));
 
             _dataOrders.Add(new Order(
-                2022,
+                3,
                 new List<Pizza>() {
                     new Pizza("Vesuvio"),
                     new Pizza("Kebab")
@@ -86,7 +88,7 @@ namespace PizzaBagare
                 }));
 
             _dataOrders.Add(new Order(
-                4404,
+                4,
                 new List<Pizza>() {
                     new Pizza("Vesuvio"),
                     new Pizza("Kebab")
@@ -97,7 +99,7 @@ namespace PizzaBagare
                 }));
 
             _dataOrders.Add(new Order(
-                1110,
+                5,
                 new List<Pizza>() {
                     new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard", "Inbakad"),
                     new Pizza("Kebab")
@@ -109,7 +111,7 @@ namespace PizzaBagare
                 }));
 
             _dataOrders.Add(new Order(
-                2022,
+                6,
                 new List<Pizza>() {
                     new Pizza("Vesuvio"),
                     new Pizza("Kebab")
@@ -119,9 +121,9 @@ namespace PizzaBagare
                     new Extra("Sallad")
                 }));
 
-            Chefs.Add(new Chef(1111, "Pizzabagare 1"));
-            Chefs.Add(new Chef(2222, "Pizzabagare 2"));
-            Chefs.Add(new Chef(3333, "Pizzabagare 3"));
+            Chefs.Add(new Chef(111, "Pizzabagare 1"));
+            Chefs.Add(new Chef(222, "Pizzabagare 2"));
+            Chefs.Add(new Chef(333, "Pizzabagare 3"));
         }
     }
 }

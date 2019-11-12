@@ -73,14 +73,14 @@ namespace PizzaBagare
                 SetOrders(data);
                 display.PrintTopInfo("Inloggad: " + Chef.Name);
                 display.PrintOrders(Orders);
-                display.PrintBottomInfo();
+                display.PrintBottomInfo(false);
             }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
         }
 
         private void DisplayOrderDetails(Order order, Display display)
         {
             display.PrintOrderDetails(order);
-            display.PrintBottomInfo("Details");
+            display.PrintBottomInfo(true);
 
             UpdateOrder(Console.ReadKey(true).KeyChar, order, display);
         }
@@ -91,7 +91,7 @@ namespace PizzaBagare
             {
                 case '1':
                     order.Status = OrderStatus.InOven;
-                    Task.Delay(TimeSpan.FromSeconds(5)).ContinueWith(t => order.Status = OrderStatus.Done);
+                    Task.Delay(TimeSpan.FromSeconds(10)).ContinueWith(t => order.Status = OrderStatus.Done);
                     break;
                 case '2':
                     order.Status = OrderStatus.Complete;
@@ -104,8 +104,6 @@ namespace PizzaBagare
                     break;
             }
         }
-
-        //private char GetInput() => Console.ReadKey(true).KeyChar;
 
         // Inloggning för bagare
         private void Login(Data data, Display display)
