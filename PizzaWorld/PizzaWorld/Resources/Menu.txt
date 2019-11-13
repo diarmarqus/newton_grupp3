@@ -1,0 +1,8 @@
+﻿#1. Margherita - Tomatsås, ost, basilika
+#2. Frutti di mare - Tomatsås, ost, blåmusslor, bläckfisk, scampi, vitlök
+#3. Pizza di Parma - Tomatsås, ost, parma skinka, ruccola
+#4. Napoli - Tomatsås, ost, kapris, ansjovis del cantabrico
+#5. Pizza 4 formaggi - Mozzarella, grana padano, gorgonzola, provolone affumicato
+#6. Grupp3 special - Tomatsås, ost, Banana, ananas, paprika
+#7. Pizza Rosso - Tomatsås, ost, champinjoner, skinka, kebab
+#8. Newton - Tomatsås, ost, ruccola, vitlök, scampi

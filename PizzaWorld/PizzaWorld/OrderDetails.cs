@@ -7,19 +7,21 @@ namespace PizzaWorld
     class OrderDetails
     {
         private int orderNr;
-        private string produktNamn;
         private int antal;
         private int pris;
         private int totalSum;
-        private double moms;
+        private MenuItems orderItem;
 
+        
         // lägg till: Menu menu;
 
         // lägg till menu i constructorn
-        public OrderDetails(int orderNr, int antal) 
+        public OrderDetails(int orderNr, int antal, ) 
         {
-            // orderNr ska vara random generated
-            moms = 0.12;
+            Random random = new Random();
+            this.orderNr = random.Next(1, 100);
+            this.antal = antal; 
+
         }
         public void CountTotalSum()
         {

@@ -6,15 +6,16 @@ namespace PizzaWorld
 {
     class ExtraMenu
     {
-        private List<string> drinks;
-        private List<string> sallad;
-        private List<string> sauce;
+        public List<string> drinks= new List<string>() {"Coca cola", "Mineral water", "Fanta", "Sprite", "Cola zero"};
+        public List<string> sallad= new List<string>() {"Pizza sallad", "Oliver", "Fefferoni"};
+        public List<string> sauce= new List<string>() {"Mayo", "Bearnaise", "Garlic mayo"};
+        public int drinksPrice = 30;
+        public int SalladPrice = 20;
+        public int saucePrice = 20;
 
         public ExtraMenu()
         {
-            drinks.Add("coca cola");
-            sallad.Add("Pizza Sallad");
-            sauce.Add("Mayo");
+
         }
     }
 }
