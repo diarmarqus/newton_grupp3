@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <PackageReference Include="System.Windows.Extensions" Version="4.6.0" />
   </ItemGroup>
 
 </Project>
