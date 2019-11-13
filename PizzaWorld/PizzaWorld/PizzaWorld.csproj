@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyConsole" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="EasyConsole">
       <HintPath>..\..\..\EasyConsole-master\packages\EasyConsole.1.1.0\lib\net452\EasyConsole.dll</HintPath>
     </Reference>

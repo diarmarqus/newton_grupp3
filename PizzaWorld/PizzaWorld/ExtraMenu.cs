@@ -4,17 +4,14 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    class ExtraMenu
+    class ExtraMenu:MenuItems
     {
-        private List<string> drinks;
-        private List<string> sallad;
-        private List<string> sauce;
+        int pricePerItem;
+      
 
-        public ExtraMenu()
+        public ExtraMenu(List<string> items, string name, int pricePerItem) : base(items, name)
         {
-            drinks.Add("coca cola");
-            sallad.Add("Pizza Sallad");
-            sauce.Add("Mayo");
+            base.totalPrice = items.Count * pricePerItem;
         }
     }
 }

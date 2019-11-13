@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaWorld", "PizzaWorld\Pi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaBagare", "PizzaBagare\PizzaBagare.csproj", "{3204AA69-4E04-455D-AAC9-845A03C9E6AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtlamningsTerminal", "UtlamningsTerminal\UtlamningsTerminal.csproj", "{4BD1A38B-729F-4E74-9EF9-E99203B0AF80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtlamningsTerminal", "UtlamningsTerminal\UtlamningsTerminal.csproj", "{4BD1A38B-729F-4E74-9EF9-E99203B0AF80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D4EB4133-725A-4194-8390-A62B5C7A749A}"
+	ProjectSection(SolutionItems) = preProject
+		Menu.txt = Menu.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

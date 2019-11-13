@@ -7,14 +7,10 @@ namespace PizzaWorld
         static void Main(string[] args)
         {
             new MenuCode().Run();
-            /*
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Diar Testar");
-            
-            Console.WriteLine("Hej från Aata");
-            Console.WriteLine("Hej Aata här");
-            Console.WriteLine("hello from molle");
-            */
+
+            Menu menu = new Menu();
+
+
         }
     }
 }
