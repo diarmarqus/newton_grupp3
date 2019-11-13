@@ -12,26 +12,24 @@ namespace PizzaBagare
         public void PrintTopInfo(string s)
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("-----------------------");
-            Console.WriteLine(s);
-            Console.WriteLine("-----------------------");
-            Console.ForegroundColor = ConsoleColor.White;
+            ConsoleColor.Yellow.WriteLine("-----------------------");
+            ConsoleColor.Yellow.WriteLine(s);
+            ConsoleColor.Yellow.WriteLine("-----------------------");
         }
 
         public void PrintBottomInfo(bool IsOrderDetails)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("-----------------------");
-            if (!IsOrderDetails)
-            {
-                Console.WriteLine(" # Välj order |'L'ogga ut");
-            }
-            else
+            if (IsOrderDetails)
             {
                 Console.WriteLine(" 1. Sätt in i ugn");
                 Console.WriteLine(" 2. Slutförd");
                 Console.WriteLine(" 3. Tillbaka");
+            }
+            else
+            {
+                Console.WriteLine(" # Välj order |'L'ogga ut");
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
@@ -39,20 +37,40 @@ namespace PizzaBagare
         public void PrintOrders(List<Order> orders)
         {
             Console.WriteLine(" #   | Order# | Status");
+            int orderCount = 0;
 
             for (int i = 0; i < orders.Count; i++)
             {
-                Console.WriteLine(string.Format(
+                if (i >= 9)
+                {
+                    orderCount = i - 8;
+                    continue;
+                }
+
+                var order = orders[i];
+
+                Console.Write(string.Format(
                     " #{0,-2} | {1,-6} | {2}", 
                     i + 1, 
-                    orders[i].OrderNumber, 
-                    orders[i].Status.GetDescription()));
+                    order.OrderNumber, 
+                    order.Status.GetDescription()));
+
+                if (order.Status == OrderStatus.Done)
+                {
+                    ConsoleColor.Red.WriteLine(" <<<");
+                    continue;
+                }
+
+                Console.WriteLine();
             }
 
-            for (int i = 12; i > orders.Count; i--)
+            for (int i = 9; i > orders.Count; i--)
             {
                 Console.WriteLine(" #   |        |");
             }
+
+            Console.WriteLine(orderCount > 0 ? $" +{orderCount} väntande" : null);
+            //Console.WriteLine(orders.Count.ToString());
         }
 
         public void PrintOrderDetails(Order order)
@@ -72,10 +90,12 @@ namespace PizzaBagare
                 Console.WriteLine($" - {extra.Item} {extra.Size}");
             }
 
-            for (int i = 7; i > order.Pizzas.Count + order.Extras.Count; i--)
+            for (int i = 6; i > order.Pizzas.Count + order.Extras.Count; i--)
             {
                 Console.WriteLine();
             }
+
+            Console.WriteLine("Status: " + order.Status.GetDescription());
         }
 
         public void PrintOrderNumber(Order order)

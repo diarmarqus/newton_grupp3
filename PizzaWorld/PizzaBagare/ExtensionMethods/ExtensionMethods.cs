@@ -21,5 +21,13 @@ namespace PizzaBagare
                     ?.Description
                 ?? value.ToString();
         }
+
+        // Writeline i valfri färg
+        public static void WriteLine(this ConsoleColor Color, string Text)
+        {
+            Console.ForegroundColor = Color;
+            Console.WriteLine(Text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }
