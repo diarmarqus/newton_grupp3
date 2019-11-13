@@ -4,28 +4,22 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    class OrderDetails
+    public class OrderDetails
     {
         private int orderNr;
-        private int antal;
-        private int pris;
+        public int qty;
+        public int price;
         private int totalSum;
         private MenuItems orderItem;
 
-        
-        // lägg till: Menu menu;
-
-        // lägg till menu i constructorn
-        public OrderDetails(int orderNr, int antal, ) 
+        public OrderDetails(MenuItems orderItem) 
         {
             Random random = new Random();
             this.orderNr = random.Next(1, 100);
-            this.antal = antal; 
+            this.qty = 1;
+            this.orderItem = orderItem;
+            this.price = orderItem.totalPrice * qty;
 
-        }
-        public void CountTotalSum()
-        {
-            totalSum = antal * pris;
         }
     }
 }

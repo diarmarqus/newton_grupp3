@@ -13,13 +13,12 @@ namespace PizzaWorld
     class Pizza : MenuItems
     {
         private PizzaBase pBase;
+        int pricePerItem = 20;
 
-        public Pizza(PizzaBase pBase) : base(List<string> items, string name, int pricePerItem)
+        public Pizza(PizzaBase pBase, List<string> items, string name) : base(items, name)
         {
             this.pBase = pBase;
-         
-
-            this.
+            base.totalPrice = items.Count * pricePerItem;
         }
 
     }

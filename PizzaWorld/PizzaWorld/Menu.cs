@@ -7,12 +7,15 @@ namespace PizzaWorld
 {
     class Menu
     {
-        List<Pizza> standardPizza = new List<Pizza>();
+        public List<Pizza> standardPizza = new List<Pizza>();
         public static List<string> ingredients = new List<string>() {"Tomatsås", "Ost", "Skinka","Basilika", "Ananas", "Blåmusslor",
         "Scampi", "Bläckfisk", "Vitlök", "Kapris", "Mozzarella", "Gorgonzola", "Parmesan", "Champinjoner", "Kebab", "Ruccola"};
+        public List<string> drinks = new List<string>() { "Cola cola", "Fanta", "Water", "Sprite" };
+        public List<string> sallad = new List<string>() { "Pizza sallad", "Oliver", "Fefferoni" };
+        public List<string> sauce = new List<string>() { "Mayo", "Bearnaise", "Garlic mayo" };
 
         List<Pizza> customerPizza = new List<Pizza>();
-        ExtraMenu extraMenu;
+       public  ExtraMenu extraMenu;
  
 
         public Menu()
@@ -27,7 +30,6 @@ namespace PizzaWorld
             AddItem(PizzaBase.Italian, new List<string>() { ingredients[0], ingredients[1], ingredients[15], ingredients[8], ingredients[6] }, "Newton");
 
         }
-
         public void AddItem(PizzaBase pBase, List<string> ingredients, string name)
         {
             standardPizza.Add(new Pizza(pBase, ingredients, name));

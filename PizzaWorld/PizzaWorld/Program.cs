@@ -10,7 +10,7 @@ namespace PizzaWorld
 
             Menu menu = new Menu();
 
-            Menu.ShowMenu("Menu.txt"); //testa att det funkar
+
         }
     }
 }
