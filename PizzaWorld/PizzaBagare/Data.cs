@@ -10,8 +10,8 @@ namespace PizzaBagare
     /// </summary>
     class Data
     {
-        public List<Order> Orders = new List<Order>();
         public List<Chef> Chefs = new List<Chef>();
+        public List<Order> Orders = new List<Order>();
 
         private List<Order> _dataOrders = new List<Order>();
         private Random _rnd = new Random();
@@ -20,7 +20,7 @@ namespace PizzaBagare
         public Data()
         {
             AddData();
-            Timer timer = new Timer(1000 * 10);
+            Timer timer = new Timer(1000 * 5);
             timer.Elapsed += TimedOrders;
             timer.Start();
         }
@@ -37,9 +37,9 @@ namespace PizzaBagare
                 Order order = _dataOrders[_counter];
 
                 Orders.Add(new Order(
-                    _rnd.Next(1000, 4999), 
-                    order.Pizzas, 
-                    order.Extras));
+                    orderNumber: _rnd.Next(1000, 4999),
+                    pizzas: order.Pizzas,
+                    extras: order.Extras));
             }
             catch (Exception ex)
             {
@@ -53,6 +53,10 @@ namespace PizzaBagare
 
         public void AddData()
         {
+            Chefs.Add(new Chef(pin: 111, "Pizzabagare 1"));
+            Chefs.Add(new Chef(pin: 222, "Pizzabagare 2"));
+            Chefs.Add(new Chef(pin: 333, "Pizzabagare 3"));
+
             _dataOrders.Add(new Order(
                 1,
                 new List<Pizza>() {
@@ -120,10 +124,6 @@ namespace PizzaBagare
                     new Extra("Cola", "Medium"),
                     new Extra("Sallad")
                 }));
-
-            Chefs.Add(new Chef(111, "Pizzabagare 1"));
-            Chefs.Add(new Chef(222, "Pizzabagare 2"));
-            Chefs.Add(new Chef(333, "Pizzabagare 3"));
         }
     }
 }
