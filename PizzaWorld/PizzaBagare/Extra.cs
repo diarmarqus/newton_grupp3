@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PizzaBagare
+﻿namespace PizzaBagare
 {
     /// <summary>
     /// Tillbehör dryck/sallad/mm

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace PizzaBagare
 {
@@ -20,6 +18,14 @@ namespace PizzaBagare
                     ?.GetCustomAttribute<DescriptionAttribute>()
                     ?.Description
                 ?? value.ToString();
+        }
+
+        // Writeline i valfri färg
+        public static void WriteLine(this ConsoleColor Color, string Text)
+        {
+            Console.ForegroundColor = Color;
+            Console.WriteLine(Text);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
