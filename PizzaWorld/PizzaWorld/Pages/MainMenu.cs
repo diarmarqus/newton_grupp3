@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EasyConsole;
+using EasyConsoleCore;
 
 namespace PizzaWorld.Pages
 {
     class MainMenu : Page
     {
-        EasyConsole.Program program;
+        EasyConsoleCore.Program program;
         int a = 0, amountOfListedItems = 5;
-        public MainMenu(EasyConsole.Program program)
+        public MainMenu(EasyConsoleCore.Program program)
             : base("Main Menu", program)
         {
             this.program = program;
