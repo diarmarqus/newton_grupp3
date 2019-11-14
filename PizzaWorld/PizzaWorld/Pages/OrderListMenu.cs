@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EasyConsole;
+using EasyConsoleCore;
 
 namespace PizzaWorld.Pages
 {
     class OrderListMenu : Page
     {
-        public OrderListMenu(EasyConsole.Program program)
+        public OrderListMenu(EasyConsoleCore.Program program)
                 : base("Order list", program)
         {
 

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EasyConsole;
+using EasyConsoleCore;
 
 namespace PizzaWorld.Pages
 {
     class IngredientsMenu : Page
     {
-        EasyConsole.Program program;
-        public IngredientsMenu(EasyConsole.Program program)
+        EasyConsoleCore.Program program;
+        public IngredientsMenu(EasyConsoleCore.Program program)
                 : base("Ingredients menu", program)
 
         {
