@@ -16,7 +16,7 @@ namespace PizzaBagare
         private List<Order> Orders { get; set; }
         private Chef Chef { get; set; }
 
-        private System.Threading.Timer _timer;
+        private Timer _timer;
         private SoundPlayer _player = new SoundPlayer(@"C:\Windows\media\Alarm01.wav");
 
         // Kör programmet
@@ -39,7 +39,7 @@ namespace PizzaBagare
         private void Run(Data data, Display display)
         {
             DisplayOrders(data, display);
-            FlushKeyBoardInput();
+            FlushInputCache();
 
             int index = 0;
 
@@ -76,7 +76,7 @@ namespace PizzaBagare
             while (true)
             {
                 PrintOrderDetails(order, display);
-                FlushKeyBoardInput();
+                FlushInputCache();
 
                 Task.Delay(250).Wait();
                 input = Console.ReadKey(true).KeyChar;
@@ -105,7 +105,7 @@ namespace PizzaBagare
         private void DisplayOrders(Data data, Display display)
         {
             // Uppdaterar ordersidan var 5e sekund (TimeSpan.FromSeconds(5))
-            _timer = new System.Threading.Timer((e) =>
+            _timer = new Timer((e) =>
             {
                 SetOrders(data);
                 display.PrintTopInfo("Inloggad: " + Chef.Name);
@@ -152,7 +152,7 @@ namespace PizzaBagare
             while (wait.ElapsedMilliseconds < 2000)
             {
                 Thread.Sleep(250);
-                FlushKeyBoardInput();
+                FlushInputCache();
             }
 
             // Ta bort ordern efter delay
@@ -221,7 +221,7 @@ namespace PizzaBagare
         }
 
         // Rensa cachade knapptryck
-        private void FlushKeyBoardInput()
+        private void FlushInputCache()
         {
             while (Console.KeyAvailable)
             {
