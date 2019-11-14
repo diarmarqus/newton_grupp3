@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace PizzaBagare
 {
     /// <summary>
-    /// Genera data för Orders/Chefs
+    /// Hanterar data för Orders/Chefs
     /// </summary>
     class Data
     {
@@ -19,13 +19,29 @@ namespace PizzaBagare
  
         public Data()
         {
+            // Skapa data för chefs och orders
             AddData();
+            // Skicka in nya orders med timer
+            TimedOrders();
+        }
+
+        private void TimedOrders()
+        {
+            // Starta ny tidsintervall 5s
             Timer timer = new Timer(1000 * 5);
-            timer.Elapsed += TimedOrders;
+
+            // Öka tidsintervall efter 30s till 15s
+            Task.Delay(TimeSpan.FromSeconds(30))
+                .ContinueWith(t => timer.Stop())
+                .ContinueWith(t => timer.Interval = 1000 * 15)
+                .ContinueWith(t => timer.Start());
+
+            // Hämtar Timer_Elapsed (ny order) varje intervall
+            timer.Elapsed += Timer_Elapsed;
             timer.Start();
         }
 
-        private void TimedOrders(object sender, ElapsedEventArgs e)
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (_counter >= _dataOrders.Count)
             {
@@ -64,14 +80,14 @@ namespace PizzaBagare
                     new Pizza("Kebab")
                 },
                 new List<Extra>() {
-                    new Extra("Cola", "Medium"),
+                    new Extra("Cola", "Mellan"),
                     new Extra("Sallad")
                 }));
 
             _dataOrders.Add(new Order(
                 2,
                 new List<Pizza>() {
-                    new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard", "Inbakad"),
+                    new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard"),
                     new Pizza("Kebab")
                 },
                 new List<Extra>() {
@@ -83,29 +99,33 @@ namespace PizzaBagare
             _dataOrders.Add(new Order(
                 3,
                 new List<Pizza>() {
-                    new Pizza("Vesuvio"),
-                    new Pizza("Kebab")
+                    new Pizza("Egen", new List<string> { "Ost", "Paprika", "Tomater", "Ruccola", "Fetaost" }, "Standard"),
+                    new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard", PizzaBase.American),
+                    new Pizza("Vesuvio")
                 },
                 new List<Extra>() {
-                    new Extra("Cola", "Medium"),
+                    new Extra("Cola", "Mellan"),
+                    new Extra("Loka", "Stor"),
+                    new Extra("Sprite", "Mellan"),
                     new Extra("Sallad")
                 }));
 
             _dataOrders.Add(new Order(
                 4,
                 new List<Pizza>() {
-                    new Pizza("Vesuvio"),
+                    new Pizza("Vesuvio", new List<string> { "Ost", "Tomater" }, "Standard"),
                     new Pizza("Kebab")
                 },
                 new List<Extra>() {
-                    new Extra("Cola", "Medium"),
+                    new Extra("Cola", "Mellan"),
+                    new Extra("Sprite", "Stor"),
                     new Extra("Sallad")
                 }));
 
             _dataOrders.Add(new Order(
                 5,
                 new List<Pizza>() {
-                    new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard", "Inbakad"),
+                    new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard", PizzaBase.American),
                     new Pizza("Kebab")
                 },
                 new List<Extra>() {
@@ -121,7 +141,7 @@ namespace PizzaBagare
                     new Pizza("Kebab")
                 },
                 new List<Extra>() {
-                    new Extra("Cola", "Medium"),
+                    new Extra("Cola", "Mellan"),
                     new Extra("Sallad")
                 }));
         }
