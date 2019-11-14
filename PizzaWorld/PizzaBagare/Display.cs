@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PizzaBagare
 {
@@ -70,7 +69,6 @@ namespace PizzaBagare
             }
 
             Console.WriteLine(orderCount > 0 ? $" +{orderCount} väntande" : null);
-            //Console.WriteLine(orders.Count.ToString());
         }
 
         public void PrintOrderDetails(Order order)
@@ -108,13 +106,13 @@ namespace PizzaBagare
         {
             if (pizza.Ingredients == null)
             {
-                Console.WriteLine($" - {pizza.Name} {pizza.Size} {pizza.Crust}");
+                Console.WriteLine($" - {pizza.Name} {pizza.Size} {pizza.PizzaBase.GetDescription()}");
             }
             else
             {
                 Console.Write($" - {pizza.Name} (");
                 PrintIngredients(pizza);
-                Console.WriteLine($") {pizza.Size} {pizza.Crust}");
+                Console.WriteLine($") {pizza.Size} {pizza.PizzaBase.GetDescription()}");
             }
         }
 
