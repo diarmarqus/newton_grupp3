@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    class ExtraMenu:MenuItems
+    public class ExtraMenu:MenuItems
     {
         int pricePerItem;
       

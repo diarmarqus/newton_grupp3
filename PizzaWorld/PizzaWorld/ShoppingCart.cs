@@ -4,27 +4,21 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    enum pick_item
+    public enum pick_item
     {
         pizza = 0,
         drinks = 1,
         sallad = 2,
         sauce = 3
     }
-    class ShoppingCart
+    public static class ShoppingCart
     {
-        Menu menu = new Menu();
+        public static Menu menu = new Menu();
 
+        public static List<OrderDetails> orderDetails = new List<OrderDetails>();
+        public static OrderDetails workingOrderDetails;
 
-        public List<OrderDetails> orderDetails = new List<OrderDetails>();
-
-
-        public ShoppingCart()
-        {
-
-        }
-
-        public void CreateOrder(pick_item pick, int place)
+        public static void CreateOrder(pick_item pick, int place)
         {
             switch (pick)
             {
@@ -32,21 +26,20 @@ namespace PizzaWorld
                     orderDetails.Add(new OrderDetails(menu.standardPizza[place]));
                     break;
                 case pick_item.drinks:
-                    menu.extraMenu.items.Add(menu.drinks[place]);
+                    menu.extraMenu.items.Add(Menu.drinks[place]);
                     break;
                 case pick_item.sallad:
-                    menu.extraMenu.items.Add(menu.sallad[place]);
+                    menu.extraMenu.items.Add(Menu.sallad[place]);
                     break;
                 case pick_item.sauce:
-                    menu.extraMenu.items.Add(menu.sauce[place]);
+                    menu.extraMenu.items.Add(Menu.sauce[place]);
                     break;
                 default:
                     break;
-            }
-            
+            }    
         }
 
-        public void DeleteOrder(pick_item pick, int place)
+        public static void DeleteOrder(pick_item pick, int place)
         {
             switch (pick)
             {
@@ -68,13 +61,13 @@ namespace PizzaWorld
 
         }
 
-        public void ChangeQty(int place, int change)
+        public static void ChangeQty(int place, int change)
         {
             orderDetails[place].qty += change;
 
         }
 
-        public int CountTotalSum()
+        public static int CountTotalSum()
         {
             int sum = 0;
             for (int i = 0; i < orderDetails.Count; i++)
@@ -84,5 +77,7 @@ namespace PizzaWorld
             sum += menu.extraMenu.totalPrice;
             return sum;
         }
+
+  
     }
 }

@@ -12,7 +12,7 @@ namespace PizzaWorld
         public Payment(int sum)
         {
             this.Sum = sum; //ta summa från ShoppingCart
-            this.OrderNr = //sätt random nr.
+            this.OrderNr = 11; //sätt random nr.
         }
 
         public void ShowAmount()
@@ -27,12 +27,12 @@ namespace PizzaWorld
 
         public int AddPinCode()
         {
-            return;
+            return 11;
         }
 
         public bool PaymentAccepted()
         {
-            return;
+            return true;
         }
 
     }

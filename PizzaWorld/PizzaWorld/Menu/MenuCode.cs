@@ -10,10 +10,13 @@ namespace PizzaWorld
     {
         public MenuCode() : base("Kundterminal", breadcrumbHeader: true)
         {
-            AddPage(new MainPage(this));
-            AddPage(new Page1(this));
+            AddPage(new LanguageMenu(this));
+            AddPage(new MainMenu(this));
+            AddPage(new IngredientsMenu(this));
+            AddPage(new OrderListMenu(this));
+            AddPage(new PayMenu(this));
 
-            SetPage<MainPage>();
+            SetPage<LanguageMenu>();
         }
     }
 }

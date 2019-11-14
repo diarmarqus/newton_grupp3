@@ -10,7 +10,8 @@ namespace PizzaWorld
         public int qty;
         public int price;
         private int totalSum;
-        private MenuItems orderItem;
+        public MenuItems orderItem;
+
 
         public OrderDetails(MenuItems orderItem) 
         {
@@ -19,7 +20,6 @@ namespace PizzaWorld
             this.qty = 1;
             this.orderItem = orderItem;
             this.price = orderItem.totalPrice * qty;
-
         }
     }
 }

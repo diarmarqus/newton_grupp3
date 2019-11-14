@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyConsole" Version="1.1.0" />
+    <PackageReference Include="EasyConsoleCore" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>

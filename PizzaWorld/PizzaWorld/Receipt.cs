@@ -10,7 +10,7 @@ namespace PizzaWorld
 
         public Receipt()
         {
-            this.ReceiptNr = //sätt random nr.
+            this.ReceiptNr = 111; //sätt random nr.
         }
 
         public void OutCheckMessage()
