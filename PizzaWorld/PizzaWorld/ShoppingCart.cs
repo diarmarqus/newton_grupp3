@@ -11,16 +11,28 @@ namespace PizzaWorld
         sallad = 2,
         sauce = 3
     }
+
+    /// <summary>
+    /// Class for all the the orders the user has stored
+    /// </summary>
     public static class ShoppingCart
     {
         public static Menu menu = new Menu();
 
+
+        // Variables that stores all the orders the users has picked
         public static List<OrderDetails> orderDetails = new List<OrderDetails>();
         public static OrderDetails drinksOrderDetails = new OrderDetails(new ExtraMenu(new List<string>(), "Drinks", 20));
         public static OrderDetails salladOrderDetails = new OrderDetails(new ExtraMenu(new List<string>(), "Sallad", 20));
         public static OrderDetails sauceOrderDetails = new OrderDetails(new ExtraMenu(new List<string>(), "Sauce", 20));
         public static OrderDetails workingOrderDetails;
 
+
+        /// <summary>
+        /// stores an order
+        /// </summary>
+        /// <param name="pick">Category</param>
+        /// <param name="place">Position of the menu item</param>
         public static void CreateOrder(pick_item pick, int place)
         {
             switch (pick)
@@ -41,6 +53,16 @@ namespace PizzaWorld
                     break;
             }    
         }
+
+
+        /// <summary>
+        /// stores an order 
+        /// but with changed ingredients
+        /// changedIngredients contains all the positions that are changed
+        /// </summary>
+        /// <param name="pick">Category</param>
+        /// <param name="place">Position of the menu item</param>
+        /// <param name="changedIngredients">An array of all the positions in the items list</param>
         public static void CreateOrder(pick_item pick, int place, bool[] changedIngredients)
         {
             switch (pick)
@@ -50,7 +72,7 @@ namespace PizzaWorld
                     oPizza.orderItem.items = new List<string>();
                     for (int i = 0; i < Menu.ingredients.Count; i++)
                     {
-                       
+          
                         if (changedIngredients[i] == true) {
                             oPizza.orderItem.items.Add(Menu.ingredients[i]);
                         }
@@ -62,7 +84,7 @@ namespace PizzaWorld
                     {
                         if (changedIngredients[i] == true)
                         {
-                            drinksOrderDetails.orderItem.items.Add(Menu.ingredients[i]);
+                            drinksOrderDetails.orderItem.items.Add(Menu.drinks[i]);
                         }
                     }
                     break;
@@ -71,7 +93,7 @@ namespace PizzaWorld
                     {
                         if (changedIngredients[i] == true)
                         {
-                            salladOrderDetails.orderItem.items.Add(Menu.ingredients[i]);
+                            salladOrderDetails.orderItem.items.Add(Menu.sallad[i]);
                         }
                     }
                     break;
@@ -80,7 +102,7 @@ namespace PizzaWorld
                     {
                         if (changedIngredients[i] == true)
                         {
-                            sauceOrderDetails.orderItem.items.Add(Menu.ingredients[i]);
+                            sauceOrderDetails.orderItem.items.Add(Menu.sauce[i]);
                         }
                     }
                     break;

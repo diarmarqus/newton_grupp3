@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PizzaWorld
 {
+    /// <summary>
+    /// Class to create and store the pizzas menu
+    /// </summary>
     public class Menu
     {
         public List<Pizza> standardPizza = new List<Pizza>();
@@ -18,6 +21,10 @@ namespace PizzaWorld
         List<Pizza> customerPizza = new List<Pizza>();
         public ExtraMenu extraMenu;
  
+        /// <summary>
+        /// Creates the standard pizza menu
+        /// 
+        /// </summary>
         public Menu()
         {
             AddItem(PizzaBase.Italian, new List<int>() { }, "Own choice");
@@ -30,6 +37,13 @@ namespace PizzaWorld
             AddItem(PizzaBase.Italian, new List<int>() { 0, 1, 13, 2, 14 }, "Pizza Rosso");
             AddItem(PizzaBase.Italian, new List<int>() { 0, 1, 15, 8, 6 }, "Newton");
         }
+
+        /// <summary>
+        /// Adds a standard pizza to the menu
+        /// </summary>
+        /// <param name="pBase">The base of the pizza</param>
+        /// <param name="ingredientsNr">Array of the positions of the ingredients in the ingredients list</param>
+        /// <param name="name">Pizza name</param>
         public void AddItem(PizzaBase pBase, List<int> ingredientsNr, string name)
         {
             pizzaNr.Add(ingredientsNr);
@@ -45,6 +59,12 @@ namespace PizzaWorld
         {
             customerPizza.Add(pizza);
         }
+
+        /// <summary>
+        /// just prints out standard pizzas
+        /// </summary>
+        /// <param name="a">starting</param>
+        /// <param name="b">ending</param>
         public void DisplayPizzas(int a, int b)
         {
             if (b >= standardPizza.Count) b = standardPizza.Count-1;

@@ -4,6 +4,10 @@ using System.Text;
 
 namespace PizzaWorld
 {
+    /// <summary>
+    /// Contains info on individual order items
+    /// 
+    /// </summary>
     public class OrderDetails
     {
         private int orderNr;

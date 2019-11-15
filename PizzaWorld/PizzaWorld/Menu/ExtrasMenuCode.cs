@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using EasyConsoleCore;
 
+/// <summary>
+/// Menykoden för tillbehörssidan
+/// 
+/// </summary>
+
 namespace PizzaWorld
 {
     enum alphabet
@@ -13,6 +18,13 @@ namespace PizzaWorld
         l = 11, m = 12, n = 13, o = 15, p = 16, q = 17, r = 18, s = 19, t = 20, u = 21,
         v = 21, x = 22, y = 23, z = 24
     }
+
+    /// <summary>
+    /// A struct to collect the data of every row
+    /// menu            contains all the items
+    /// category        the name of the row
+    /// checked_item    is to have a list of the position of every checked_item
+    /// </summary>
     public struct bar_menu
     {
         public List<string> menu;
@@ -43,12 +55,24 @@ namespace PizzaWorld
             numberOfRows = 0;
             choosen_row = 0;
         }
+        /// <summary>
+        /// Lägger till en menyrad med ett kategorinamn, och en lista med alla objekt
+        /// </summary>
+        /// <param name="name">Name for the category</param>
+        /// <param name="menu_row">List of items</param>
+        /// <param name="radio_or_not">If the list is radiobuttons or not</param>
         
         public void AddRow(string name, List<string> menu_row, bool radio_or_not)
         {
             all_menus.Add(new bar_menu(name, menu_row, radio_or_not));
             numberOfRows++;
         }
+        /// <summary>
+        /// Checks all the ingredients in the choosen pizza
+        /// Stores it in checked_item
+        /// </summary>
+        /// <param name="allNr">A list on all the ingredients to check</param>
+
         public void CheckAllIngredients(List<int> allNr)
         {
             for (int i = 0; i < allNr.Count; i++)
@@ -56,6 +80,12 @@ namespace PizzaWorld
                 all_menus[1].checked_item[allNr[i]] = true;
             }
         }
+
+        /// <summary>
+        /// Takes a number and checks that position in the bool array checked_item
+        /// </summary>
+        /// <param name="nr">Position to check the item in checked_item</param>
+        /// <returns></returns>
         public bool CheckItem(int nr)
         {
             if (nr < 0 && nr > numberOfRows) return false;
@@ -76,11 +106,14 @@ namespace PizzaWorld
             }
             return true;
         }
+
+        /// <summary>
+        /// Just prints all the menus in order
+        /// </summary>
         private void PrintMenu()
         {
             for (int i = 0; i < all_menus.Count; i++)
             {
-             
                 List<string> pMenu = all_menus[i].menu;
                 if (choosen_row == i) Console.Write(">");
                 Console.WriteLine($"{i}. {all_menus[i].category}");
@@ -103,6 +136,14 @@ namespace PizzaWorld
             }
         }
 
+
+        /// <summary>
+        /// Makes the menu run
+        /// Reads an input from user
+        /// Numbers to change category and letters to check items
+        /// 
+        /// </summary>
+        /// <returns>If the menu shall continue or not</returns>
         public bool Run()
         {
             char input;
@@ -116,8 +157,7 @@ namespace PizzaWorld
                 input_value = Int32.Parse(input.ToString());
                 if (input_value >= 0 && input_value <= numberOfRows)
                 {
-                    choosen_row = input_value;
-
+                    choosen_row = input_value;          // saves the marked category
                 }
                 else
                 {

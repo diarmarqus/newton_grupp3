@@ -5,6 +5,11 @@ using EasyConsoleCore;
 
 namespace PizzaWorld.Pages
 {
+    /// <summary>
+    /// This is the menu page to choose ingredients
+    /// and extras.
+    /// Addrow() to add menu rows and Run() to display the menu
+    /// </summary>
     class IngredientsMenu : Page
     {
         EasyConsoleCore.Program program;
