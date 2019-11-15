@@ -6,10 +6,10 @@ namespace PizzaWorld
 {
     public class OrderDetails
     {
-        private int orderNr;
+        public int orderNr;
         public int qty;
         public int price;
-        private int totalSum;
+        public double totalSum;
         public MenuItems orderItem;
 
 
