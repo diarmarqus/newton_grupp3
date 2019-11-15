@@ -10,7 +10,6 @@ namespace PizzaWorld
         public DateTime date;
         public MenuItems menuItems;
         public OrderDetails orderDetails1;
-        public ShoppingCart shoppingCart;
 
         public Receipt()
         {
@@ -36,9 +35,9 @@ namespace PizzaWorld
             Console.WriteLine("\n");
             Console.WriteLine("-------------------------------------------------------------");
 
-            while (shoppingCart.orderDetails.Count >0)
+            while (ShoppingCart.orderDetails.Count >0)
             {
-            for (int i = 0; i < shoppingCart.orderDetails.Count; i++)
+            for (int i = 0; i < ShoppingCart.orderDetails.Count; i++)
             {
             Console.WriteLine($"{menuItems.items[i]}                    price x"); //vi måste koppla till priset också
             }
