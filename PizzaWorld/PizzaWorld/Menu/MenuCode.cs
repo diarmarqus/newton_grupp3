@@ -6,6 +6,11 @@ using PizzaWorld.Pages;
 
 namespace PizzaWorld
 {
+
+    /// <summary>
+    /// Contains all the pages in the terminal
+    /// SetPage sets the start page
+    /// </summary>
     class MenuCode : EasyConsoleCore.Program
     {
         public MenuCode() : base("Kundterminal", breadcrumbHeader: true)
