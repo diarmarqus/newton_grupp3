@@ -20,6 +20,7 @@ namespace PizzaWorld
  
         public Menu()
         {
+            AddItem(PizzaBase.Italian, new List<int>() { }, "Own choice");
             AddItem(PizzaBase.Italian, new List<int>() {0, 1, 3 }, "Margarita");
             AddItem(PizzaBase.Italian, new List<int>() { 0, 1, 5, 7, 6, 8 }, "Frutti di mare");
             AddItem(PizzaBase.Italian, new List<int>() { 0, 1, 2, 15 }, "Pizza di Parma");
@@ -35,7 +36,7 @@ namespace PizzaWorld
             List<string> ingr = new List<string>();
             for (int i = 0; i < ingredientsNr.Count; i++)
             {
-                ingr.Add(ingredients[i]);
+                ingr.Add(ingredients[ingredientsNr[i]]);
             }
             standardPizza.Add(new Pizza(pBase, ingr, name, standardPizza.Count));
         }

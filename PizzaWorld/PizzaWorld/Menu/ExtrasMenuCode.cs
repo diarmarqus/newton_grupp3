@@ -13,7 +13,7 @@ namespace PizzaWorld
         l = 11, m = 12, n = 13, o = 15, p = 16, q = 17, r = 18, s = 19, t = 20, u = 21,
         v = 21, x = 22, y = 23, z = 24
     }
-    struct bar_menu
+    public struct bar_menu
     {
         public List<string> menu;
         public bool[] checked_item;
@@ -33,9 +33,9 @@ namespace PizzaWorld
     }
     public class ExtrasMenuCode
     {
-        List<bar_menu> all_menus;
+        public List<bar_menu> all_menus;
         int choosen_row;
-        int numberOfRows;
+        public int numberOfRows;
 
         public ExtrasMenuCode()
         {
@@ -43,6 +43,7 @@ namespace PizzaWorld
             numberOfRows = 0;
             choosen_row = 0;
         }
+        
         public void AddRow(string name, List<string> menu_row, bool radio_or_not)
         {
             all_menus.Add(new bar_menu(name, menu_row, radio_or_not));
@@ -79,6 +80,7 @@ namespace PizzaWorld
         {
             for (int i = 0; i < all_menus.Count; i++)
             {
+             
                 List<string> pMenu = all_menus[i].menu;
                 if (choosen_row == i) Console.Write(">");
                 Console.WriteLine($"{i}. {all_menus[i].category}");
@@ -106,6 +108,8 @@ namespace PizzaWorld
             char input;
             int input_value;
             PrintMenu();
+            Console.Write("Choose an option(1-9 for category, a-z for items and Enter to accept)\n:");
+
             input = Console.ReadKey().KeyChar;
             if (char.IsDigit(input))
             {
@@ -130,8 +134,16 @@ namespace PizzaWorld
                 {
                     Console.WriteLine(input + " is not a valid input");
                 }
-            }
-            else
+            } 
+            else if (input == '\r')
+            {
+                Console.Write("Accept items(y,n)?");
+                input = Console.ReadKey().KeyChar;
+                if (input == 'y')
+                {
+                    return false;
+                }
+            } else
             {
                 Console.WriteLine(input + " is not a valid input");
             }

@@ -20,7 +20,10 @@ namespace PizzaWorld.Pages
             {
                 base.Display();
                 Console.WriteLine("1. OrderListMenu");
-
+                for (int i = 0; i < ShoppingCart.orderDetails.Count; i++)
+                {
+                    Console.WriteLine(i + ". " + ShoppingCart.orderDetails[i].orderItem.name + " " + ShoppingCart.orderDetails[i].qty);
+                }
 
                 input = Input.ReadInt("Please enter an integer (between 1 and 10):", min: 1, max: 10);
                 if (input == 1)
