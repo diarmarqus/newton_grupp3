@@ -36,6 +36,15 @@ namespace PizzaWorld.Pages
                 System.Console.Clear();
                 base.Display();
             }
+
+            // loop through all menus and add to shopping cart
+            for (int i = 0; i < iMenu.numberOfRows-1; i++)
+            {
+                ShoppingCart.CreateOrder((pick_item)i, ShoppingCart.workingOrderDetails.orderItem.menuNr, iMenu.all_menus[i+1].checked_item);
+            }
+
+
+            program.NavigateTo<MainMenu>();
         }
     }
 }

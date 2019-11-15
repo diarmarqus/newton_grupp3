@@ -8,7 +8,6 @@ namespace PizzaWorld.Pages
     class MainMenu : Page
     {
         EasyConsoleCore.Program program;
-        int a = 0, amountOfListedItems = 5;
         public MainMenu(EasyConsoleCore.Program program)
             : base("Main Menu", program)
         {
@@ -18,27 +17,21 @@ namespace PizzaWorld.Pages
         {
             Menu menu = new Menu();
             int input;
+            int b=Menu.pizzaNr.Count-1;
             while (true)
             {
-
-                int b = a + amountOfListedItems;
                 base.Display();
-                menu.DisplayPizzas(a, b);
-                Console.WriteLine($"{b + 1}. Own Choice");
-                Console.WriteLine($"{b + 2}. Go Forward");
-                Console.WriteLine($"{b + 3}. Go Backward");
-                input = Input.ReadInt("Please enter an integer:", a, b+3);
-                if (input >= a && input <= b+1)
+                
+                menu.DisplayPizzas(0, b);
+                Console.WriteLine(b+1 + ". Go to checkout" );
+                Console.WriteLine("nr of orders: " + ShoppingCart.orderDetails.Count);
+                input = Input.ReadInt("Please enter an integer:", 0, b+1);
+                if (input >= 0 && input <= b)
                 {
                     ShoppingCart.workingOrderDetails = new OrderDetails(ShoppingCart.menu.standardPizza[input]);
                     program.NavigateTo<IngredientsMenu>();
-                }
-                else if (input == b+2)
-                {
-                    a += amountOfListedItems;
-                } else if (input == b+3)
-                {
-                    a -= amountOfListedItems;
+                } else if (input == b+1){
+                    program.NavigateTo<OrderListMenu>();
                 }
                 Console.Clear();
             }
