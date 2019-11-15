@@ -4,9 +4,9 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    class Payment
+    public class Payment
     {
-        private double Sum;
+        public double Sum;
         public int orderNumber;
         OrderDetails details;
 
