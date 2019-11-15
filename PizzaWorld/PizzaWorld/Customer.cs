@@ -4,25 +4,21 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    enum Languages
+   public class Customer
     {
-        Svenska = 0,
-        engelska = 1
-    }
-    class Customer
-    {
-        public Languages chosenLanguage { get; set; }
-        public int customerID { get; set; }
+        public int customerID;
 
-        public Customer(Languages chosenLanguage)
+        public Customer()
         {
-            customerID = 1234;      // lägg till en random nr senare
-            this.chosenLanguage = chosenLanguage;
+
         }
 
-        public void ChoseLanguage(Languages chosenLanguage)
+        public int CreateCustomerID()
         {
-            this.chosenLanguage = chosenLanguage;
+            Random r = new Random();
+            int customerID = r.Next(1, 100);
+            return customerID;
         }
+
     }
 }

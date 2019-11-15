@@ -11,14 +11,14 @@ namespace PizzaWorld
         sallad = 2,
         sauce = 3
     }
-    public static class ShoppingCart
+    public class ShoppingCart
     {
-        public static Menu menu = new Menu();
+        public Menu menu = new Menu();
 
-        public static List<OrderDetails> orderDetails = new List<OrderDetails>();
-        public static OrderDetails workingOrderDetails;
+        public List<OrderDetails> orderDetails = new List<OrderDetails>();
+        public OrderDetails workingOrderDetails;
 
-        public static void CreateOrder(pick_item pick, int place)
+        public void CreateOrder(pick_item pick, int place)
         {
             switch (pick)
             {
@@ -39,7 +39,7 @@ namespace PizzaWorld
             }    
         }
 
-        public static void DeleteOrder(pick_item pick, int place)
+        public void DeleteOrder(pick_item pick, int place)
         {
             switch (pick)
             {
@@ -61,13 +61,13 @@ namespace PizzaWorld
 
         }
 
-        public static void ChangeQty(int place, int change)
+        public void ChangeQty(int place, int change)
         {
             orderDetails[place].qty += change;
 
         }
 
-        public static int CountTotalSum()
+        public int CountTotalSum()
         {
             int sum = 0;
             for (int i = 0; i < orderDetails.Count; i++)

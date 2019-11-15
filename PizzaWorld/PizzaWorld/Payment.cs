@@ -6,28 +6,20 @@ namespace PizzaWorld
 {
     class Payment
     {
-        private int Sum;
-        private int OrderNr;
+        private double Sum;
+        public int orderNumber;
+        OrderDetails details;
 
-        public Payment(int sum)
+        public Payment()
         {
-            this.Sum = sum; //ta summa från ShoppingCart
-            this.OrderNr = 11; //sätt random nr.
-        }
-
-        public void ShowAmount()
-        {
-
-        }
-
-        public void ShowOrderNr()
-        {
-
+            this.orderNumber = details.orderNr;
+            this.Sum = details.totalSum;
         }
 
         public int AddPinCode()
         {
-            return 11;
+            int userInput = Convert.ToInt32(Console.ReadLine());
+            return userInput;
         }
 
         public bool PaymentAccepted()
