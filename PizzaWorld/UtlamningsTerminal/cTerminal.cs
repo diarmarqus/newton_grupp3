@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Timers;
 
 namespace UtlamningsTerminal
 {
     public class cTerminal
     {
-        int currentpizza = 0, deletedpizzas = 0;
+        int currentpizza = 4, deletedpizzas = 0;
         public class sPizza
         {
             public int state, ordernumber;
@@ -40,6 +41,98 @@ namespace UtlamningsTerminal
             }
         }
 		List<sPizza> pizzaList = new List<sPizza>() ;
+        private void SimulateNext(){
+            Random rnd = new Random();
+            int randomevent = rnd.Next(2000, 4000);
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Interval = randomevent;
+            aTimer.Enabled = true;
+            System.Timers.Timer aaTimer = new System.Timers.Timer();
+            aaTimer.Elapsed += new ElapsedEventHandler(AddRandomPizza);
+            aaTimer.Interval = 7000;
+            aaTimer.Enabled = true;
+        }
+        private void AddRandomPizza(object source, ElapsedEventArgs e)
+        {
+            Random rnd = new Random();
+            int randomevent = rnd.Next(0, 8);
+            Random rndextra = new Random();
+            int randomextra = rnd.Next(0, 7);
+            string extra = "nothing";
+            if (randomextra == 0)
+                extra = "nothing";
+            else if (randomextra == 1)
+                extra = "cheese";
+            else if (randomextra == 2)
+                extra = "pepperoni";
+            else if (randomextra == 3)
+                extra = "fefferoni";
+            else if (randomextra == 4)
+                extra = "mozarella";
+            else if (randomextra == 5)
+                extra = "onions";
+            else if (randomextra == 6)
+                extra = "mushrooms";
+
+            if (randomevent == 0)
+                pizzaList.Add(new sPizza("Capricciosa", extra, currentpizza));
+            else if (randomevent == 1) 
+                pizzaList.Add(new sPizza("Tropicana", extra, currentpizza));
+            else if (randomevent == 2) 
+                pizzaList.Add(new sPizza("Orientale", extra, currentpizza));
+            else if (randomevent == 3) 
+                pizzaList.Add(new sPizza("Pepperoni", extra, currentpizza));
+            else if (randomevent == 4)
+                pizzaList.Add(new sPizza("Hamburger", extra, currentpizza));
+            else if (randomevent == 5)
+                pizzaList.Add(new sPizza("Kebab", extra, currentpizza));
+            else if (randomevent == 6)
+                pizzaList.Add(new sPizza("4-Cheese", extra, currentpizza));
+            else if (randomevent == 7)
+                pizzaList.Add(new sPizza("Peters pizza", extra, currentpizza));
+            currentpizza++;
+        }
+            // Specify what you want to happen when the Elapsed event is raised.
+            private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            Random rnd = new Random();
+            int randomevent = rnd.Next(0, pizzaList.Count);
+            int count = 0;
+
+            for (int i = pizzaList.Count - 1; i > -1; i--)
+            {
+                if (randomevent == i)
+                {
+                    pizzaList[i].MoveToNextState();
+                }
+                if (pizzaList[i].state == 3)
+                    pizzaList.RemoveAt(i);
+            }/*
+            foreach (sPizza pizza in pizzaList)
+            {
+                if (count == randomevent)
+                {
+                    //Random event occurs on this pizza
+
+
+                }
+                count++;
+            }*/
+            Console.Clear();
+            Console.WriteLine("Here are all the current orders. Order states: (0:Just in, 1: In oven, 2: Finished and ready for pickup)");
+            foreach (sPizza pizza in pizzaList)
+            {
+                // pizza.ordernumber = currentPizza;
+                if(pizza.state == 0)
+                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Order just in");
+                else if (pizza.state == 1)
+                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: In the oven");
+                if (pizza.state == 2)
+                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Ready for pickup");
+                //currentPizza++;
+            }
+        }
         public void MainLoop()
         {
 			string key = "Max is the king";
@@ -52,7 +145,7 @@ namespace UtlamningsTerminal
             
             int currentPizza = 4;
             while (true){
-
+                SimulateNext();
                 Console.Clear();
                 Console.WriteLine("Here are all the current orders. Order states: (0:Just in, 1: In oven, 2: Finished and ready for pickup)");
                 foreach (sPizza pizza in pizzaList)
@@ -81,31 +174,35 @@ namespace UtlamningsTerminal
                     Console.WriteLine("Delete pizza with order number:");
                     string pizzanumber = Console.ReadLine();
                     int number = Int32.Parse(pizzanumber); //int number = int.TryParse(pizzanumber);
-                    pizzaList.RemoveAt(number- deletedpizzas);
-
+                    //pizzaList.RemoveAt(number- deletedpizzas);
+                    for (int i = pizzaList.Count - 1; i > -1; i--)
+                    {
+                        if (pizzaList[i].ordernumber == number)
+                        {
+                            pizzaList.RemoveAt(i);
+                        }
+                    }
                     deletedpizzas++;
                 }
                 else if (key == "3")
                 {
-                    /* SOMETHING WRONG WITH THIS FUNCTION AS IT THROWS THE WRONG INDEX AND FAILS, NEEDS TO BE FIXED */
                     Console.WriteLine("Move pizza to next state with order number:");
                     string pizzanumber = Console.ReadLine();
                     int number = Int32.Parse(pizzanumber); //int number = int.TryParse(pizzanumber);
-                    if (number < pizzaList.Count)
-                    {
-                        pizzaList[number - deletedpizzas].MoveToNextState();
-                        if (pizzaList[number - deletedpizzas].state == 3)
-                        {
-                            pizzaList.RemoveAt(number);
-                            deletedpizzas++;
-                        }
-                    }
-                    else
-                    {
 
-                        Console.WriteLine("Error, no pizza with that index");
-                        Thread.Sleep(5000);
-                    }
+   
+                        for (int i = pizzaList.Count - 1; i > -1; i--)
+                        {
+                            if (pizzaList[i].ordernumber == number)
+                            {
+                                if (pizzaList[i].state < 2)
+                                    pizzaList[i].MoveToNextState();
+                                
+                                else
+                                    pizzaList.RemoveAt(i);
+                            }
+                        }
+
                 }
 
 
