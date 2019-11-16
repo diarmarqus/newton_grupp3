@@ -6,7 +6,9 @@ namespace UtlamningsTerminal
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello max2!");
+            cTerminal terminal = new cTerminal();
+
+            terminal.MainLoop();
         }
     }
 }
