@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Media;
 using System.Threading;
@@ -75,7 +74,8 @@ namespace PizzaBagare
 
             while (true)
             {
-                PrintOrderDetails(order, display);
+                display.PrintOrderDetails(order);
+                display.PrintBottomInfo(true);
                 FlushInputCache();
 
                 Task.Delay(250).Wait();
@@ -86,9 +86,9 @@ namespace PizzaBagare
                     break;
                 }
 
-                Console.WriteLine("Är ordern klar? Y/N");
+                Console.WriteLine("Är ordern klar? J/N");
 
-                if (Console.ReadKey(true).KeyChar == 'y')
+                if (Console.ReadKey(true).KeyChar == 'j')
                 {
                     break;
                 }
@@ -102,9 +102,8 @@ namespace PizzaBagare
 
         private void SetOrders(Data data) => this.Orders = data.Orders;
 
-        private void DisplayOrders(Data data, Display display)
-        {
-            // Uppdaterar ordersidan var 5e sekund (TimeSpan.FromSeconds(5))
+        // Uppdaterar ordersidan var 5e sekund (TimeSpan.FromSeconds(5))
+        private void DisplayOrders(Data data, Display display) =>
             _timer = new Timer((e) =>
             {
                 SetOrders(data);
@@ -113,13 +112,6 @@ namespace PizzaBagare
                 display.PrintBottomInfo(false);
                 PizzaAlarm();
             }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
-        }
-
-        private void PrintOrderDetails(Order order, Display display)
-        {
-            display.PrintOrderDetails(order);
-            display.PrintBottomInfo(true);
-        }
 
         private void UpdateOrder(char input, Order order, Display display)
         {
@@ -138,22 +130,16 @@ namespace PizzaBagare
             }
         }
 
-        // Uppdatera orderstatus och starta alarm när pizzan är klar
+        // Uppdatera orderstatus när pizzan är klar
         private void OrderInOven(Order order) =>
             Task.Delay(TimeSpan.FromSeconds(15))
             .ContinueWith(t => order.Status = OrderStatus.Done);
-            //.ContinueWith(n => _player.Play());
 
         private void OrderComplete(Order order, Display display)
         {
-            Stopwatch wait = Stopwatch.StartNew();
             // Skriver ut ordernummret under 2 sek
             display.PrintOrderNumber(order);
-            while (wait.ElapsedMilliseconds < 2000)
-            {
-                Thread.Sleep(250);
-                FlushInputCache();
-            }
+            Thread.Sleep(2000);
 
             // Ta bort ordern efter delay
             Task.Delay(TimeSpan.FromSeconds(5))
@@ -164,9 +150,7 @@ namespace PizzaBagare
         private void Login(Data data, Display display)
         {
             display.PrintTopInfo("Logga in");
-
             VerifyPin(data, display);
-
             SetOrders(data);
         }
 

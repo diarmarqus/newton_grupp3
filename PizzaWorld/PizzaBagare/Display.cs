@@ -48,11 +48,7 @@ namespace PizzaBagare
 
                 var order = orders[i];
 
-                Console.Write(string.Format(
-                    " #{0,-2} | {1,-6} | {2}", 
-                    i + 1, 
-                    order.OrderNumber, 
-                    order.Status.GetDescription()));
+                Console.Write($" #{i + 1,-2} | {order.OrderNumber,-6} | {order.Status.GetDescription()}");
 
                 if (order.Status == OrderStatus.Done)
                 {
@@ -99,7 +95,7 @@ namespace PizzaBagare
         public void PrintOrderNumber(Order order)
         {
             PrintTopInfo("Utskrift");
-            Console.WriteLine("Skriver ut ordernummer " + order.OrderNumber + "...");
+            Console.WriteLine($"Skriver ut ordernummer {order.OrderNumber}...");
         }
 
         private void PrintPizza(Pizza pizza)
