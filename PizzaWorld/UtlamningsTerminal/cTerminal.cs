@@ -106,6 +106,8 @@ namespace UtlamningsTerminal
                 {
                     pizzaList[i].MoveToNextState();
                 }
+                if(pizzaList[i].state == 2)
+                    Console.Beep();
                 if (pizzaList[i].state == 3)
                     pizzaList.RemoveAt(i);
             }/*
@@ -123,11 +125,19 @@ namespace UtlamningsTerminal
             Console.WriteLine("Here are all the current orders. Order states: (0:Just in, 1: In oven, 2: Finished and ready for pickup)");
             foreach (sPizza pizza in pizzaList)
             {
-                // pizza.ordernumber = currentPizza;
-                if(pizza.state == 0)
+                if (pizza.state == 0)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Order just in");
-                else if (pizza.state == 1)
+                //currentPizza++;
+            }
+            Console.WriteLine("\n");
+            foreach (sPizza pizza in pizzaList)
+            {
+                if (pizza.state == 1)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: In the oven");
+            }
+            Console.WriteLine("\n");
+            foreach (sPizza pizza in pizzaList)
+            {
                 if (pizza.state == 2)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Ready for pickup");
                 //currentPizza++;
