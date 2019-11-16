@@ -90,7 +90,7 @@ namespace UtlamningsTerminal
             else if (randomevent == 6)
                 pizzaList.Add(new sPizza("4-Cheese", extra, currentpizza));
             else if (randomevent == 7)
-                pizzaList.Add(new sPizza("Peters pizza", extra, currentpizza));
+                pizzaList.Add(new sPizza("Petersspec", extra, currentpizza));
             currentpizza++;
         }
             // Specify what you want to happen when the Elapsed event is raised.
