@@ -123,19 +123,20 @@ namespace UtlamningsTerminal
             }*/
             Console.Clear();
             Console.WriteLine("Here are all the current orders. Order states: (0:Just in, 1: In oven, 2: Finished and ready for pickup)");
+            Console.WriteLine("Orders just in:");
             foreach (sPizza pizza in pizzaList)
             {
                 if (pizza.state == 0)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Order just in");
                 //currentPizza++;
             }
-            Console.WriteLine("\n");
+            Console.WriteLine("\nOrders in the oven:");
             foreach (sPizza pizza in pizzaList)
             {
                 if (pizza.state == 1)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: In the oven");
             }
-            Console.WriteLine("\n");
+            Console.WriteLine("\nOrders ready for pickup:");
             foreach (sPizza pizza in pizzaList)
             {
                 if (pizza.state == 2)
