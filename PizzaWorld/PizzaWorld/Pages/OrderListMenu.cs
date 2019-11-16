@@ -59,7 +59,7 @@ namespace PizzaWorld.Pages
                 {
                     Console.WriteLine("Enter number of the orderline to delete it:");
                     int input2 = Convert.ToInt32(Console.ReadLine());
-                    ShoppingCart.DeleteOrder(0, input2);
+                    //ShoppingCart.DeleteOrder(0, input2);
                 }
 
                 //nu blir antal rätt för total antal men på order rad är det fel.

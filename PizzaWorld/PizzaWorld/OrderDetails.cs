@@ -17,7 +17,7 @@ namespace PizzaWorld
         public MenuItems orderItem;
 
 
-        public OrderDetails(MenuItems orderItem) 
+        public OrderDetails(MenuItems orderItem)
         {
             Random random = new Random();
             this.orderNr = random.Next(1, 100);

@@ -4,13 +4,6 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    public enum pick_item
-    {
-        pizza = 0,
-        drinks = 1,
-        sallad = 2,
-        sauce = 3
-    }
 
     /// <summary>
     /// Class for all the the orders the user has stored
@@ -29,109 +22,11 @@ namespace PizzaWorld
        
 
 
-        /// <summary>
-        /// stores an order
-        /// </summary>
-        /// <param name="pick">Category</param>
-        /// <param name="place">Position of the menu item</param>
-        public static void CreateOrder(pick_item pick, int place)
+       
+
+        public static void addOrder(OrderDetails aOrderDetails)
         {
-            switch (pick)
-            {
-                case pick_item.pizza:
-                    orderDetails.Add(new OrderDetails(Menu.standardPizza[place]));
-                    break;
-                case pick_item.drinks:
-                    drinksOrderDetails.orderItem.items.Add(Menu.drinks[place]);
-                    break;
-                case pick_item.sallad:
-                    salladOrderDetails.orderItem.items.Add(Menu.sallad[place]);
-                    break;
-                case pick_item.sauce:
-                    sauceOrderDetails.orderItem.items.Add(Menu.sauce[place]);
-                    break;
-                default:
-                    break;
-            }    
-        }
-
-
-        /// <summary>
-        /// stores an order 
-        /// but with changed ingredients
-        /// changedIngredients contains all the positions that are changed
-        /// </summary>
-        /// <param name="pick">Category</param>
-        /// <param name="place">Position of the menu item</param>
-        /// <param name="changedIngredients">An array of all the positions in the items list</param>
-        public static void CreateOrder(pick_item pick, int place, bool[] changedIngredients)
-        {
-            switch (pick)
-            {
-                case pick_item.pizza:
-                    OrderDetails oPizza = new OrderDetails(Menu.standardPizza[place]);
-                    oPizza.orderItem.items = new List<string>();
-                    for (int i = 0; i < Menu.ingredients.Count; i++)
-                    {
-          
-                        if (changedIngredients[i] == true) {
-                            oPizza.orderItem.items.Add(Menu.ingredients[i]);
-                        }
-                    }
-                    orderDetails.Add(oPizza);
-                    break;
-                case pick_item.drinks:
-                    for (int i = 0; i < Menu.drinks.Count; i++)
-                    {
-                        if (changedIngredients[i] == true)
-                        {
-                            drinksOrderDetails.orderItem.items.Add(Menu.drinks[i]);
-                        }
-                    }
-                    break;
-                case pick_item.sallad:
-                    for (int i = 0; i < Menu.sallad.Count; i++)
-                    {
-                        if (changedIngredients[i] == true)
-                        {
-                            salladOrderDetails.orderItem.items.Add(Menu.sallad[i]);
-                        }
-                    }
-                    break;
-                case pick_item.sauce:
-                    for (int i = 0; i < Menu.sauce.Count; i++)
-                    {
-                        if (changedIngredients[i] == true)
-                        {
-                            sauceOrderDetails.orderItem.items.Add(Menu.sauce[i]);
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public static void DeleteOrder(pick_item pick, int place)
-        {
-            switch (pick)
-            {
-                case pick_item.pizza:
-                    orderDetails.RemoveAt(place);
-                    break;
-                case pick_item.drinks:
-                    drinksOrderDetails.orderItem.items.RemoveAt(place);
-                    break;
-                case pick_item.sallad:
-                   salladOrderDetails.orderItem.items.RemoveAt(place);
-                    break;
-                case pick_item.sauce:
-                    sauceOrderDetails.orderItem.items.RemoveAt(place);
-                    break;
-                default:
-                    break;
-            }
-
+            orderDetails.Add(aOrderDetails);
         }
 
         public static void ChangeQty(int place, int change)
