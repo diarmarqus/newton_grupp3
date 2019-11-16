@@ -17,7 +17,7 @@ namespace PizzaWorld
     /// </summary>
     public static class ShoppingCart
     {
-        public static Menu menu = new Menu();
+        //public static Menu menu = new Menu();
 
 
         // Variables that stores all the orders the users has picked
@@ -39,7 +39,7 @@ namespace PizzaWorld
             switch (pick)
             {
                 case pick_item.pizza:
-                    orderDetails.Add(new OrderDetails(menu.standardPizza[place]));
+                    orderDetails.Add(new OrderDetails(Menu.standardPizza[place]));
                     break;
                 case pick_item.drinks:
                     drinksOrderDetails.orderItem.items.Add(Menu.drinks[place]);
@@ -69,7 +69,7 @@ namespace PizzaWorld
             switch (pick)
             {
                 case pick_item.pizza:
-                    OrderDetails oPizza = new OrderDetails(menu.standardPizza[place]);
+                    OrderDetails oPizza = new OrderDetails(Menu.standardPizza[place]);
                     oPizza.orderItem.items = new List<string>();
                     for (int i = 0; i < Menu.ingredients.Count; i++)
                     {
@@ -120,13 +120,13 @@ namespace PizzaWorld
                     orderDetails.RemoveAt(place);
                     break;
                 case pick_item.drinks:
-                    menu.extraMenu.items.RemoveAt(place);
+                    drinksOrderDetails.orderItem.items.RemoveAt(place);
                     break;
                 case pick_item.sallad:
-                    menu.extraMenu.items.RemoveAt(place);
+                   salladOrderDetails.orderItem.items.RemoveAt(place);
                     break;
                 case pick_item.sauce:
-                    menu.extraMenu.items.RemoveAt(place);
+                    sauceOrderDetails.orderItem.items.RemoveAt(place);
                     break;
                 default:
                     break;
@@ -147,7 +147,9 @@ namespace PizzaWorld
             {
                 sum = sum + orderDetails[i].price;
             }
-            sum += menu.extraMenu.totalPrice;
+            sum += drinksOrderDetails.orderItem.totalPrice;
+            sum += salladOrderDetails.orderItem.totalPrice;
+            sum += sauceOrderDetails.orderItem.totalPrice;
             return sum;
         }
 
