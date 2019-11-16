@@ -90,7 +90,7 @@ namespace UtlamningsTerminal
             else if (randomevent == 6)
                 pizzaList.Add(new sPizza("4-Cheese", extra, currentpizza));
             else if (randomevent == 7)
-                pizzaList.Add(new sPizza("Peters pizza", extra, currentpizza));
+                pizzaList.Add(new sPizza("Petersspec", extra, currentpizza));
             currentpizza++;
         }
             // Specify what you want to happen when the Elapsed event is raised.
@@ -106,6 +106,8 @@ namespace UtlamningsTerminal
                 {
                     pizzaList[i].MoveToNextState();
                 }
+                if(pizzaList[i].state == 2)
+                    Console.Beep();
                 if (pizzaList[i].state == 3)
                     pizzaList.RemoveAt(i);
             }/*
@@ -121,13 +123,22 @@ namespace UtlamningsTerminal
             }*/
             Console.Clear();
             Console.WriteLine("Here are all the current orders. Order states: (0:Just in, 1: In oven, 2: Finished and ready for pickup)");
+            Console.WriteLine("Orders just in:");
             foreach (sPizza pizza in pizzaList)
             {
-                // pizza.ordernumber = currentPizza;
-                if(pizza.state == 0)
+                if (pizza.state == 0)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Order just in");
-                else if (pizza.state == 1)
+                //currentPizza++;
+            }
+            Console.WriteLine("\nOrders in the oven:");
+            foreach (sPizza pizza in pizzaList)
+            {
+                if (pizza.state == 1)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: In the oven");
+            }
+            Console.WriteLine("\nOrders ready for pickup:");
+            foreach (sPizza pizza in pizzaList)
+            {
                 if (pizza.state == 2)
                     Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Ready for pickup");
                 //currentPizza++;
