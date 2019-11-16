@@ -5,7 +5,7 @@
  * And PS: Sure, the code might seem very C:like but why use objects when they are not needed, That, in my opinion
  * just eats computer resources and we could check that by just adding a timer at the beginning and end of every code
  * in this project, and I'll guarantee that this one would win. Object oriented programming is amazing but shouldn't be
- * used where it is not needed. That just eats up your computers ram and cpu power
+ * used where it is not needed. That just eats up your computers ram and cpu power.
  */
  
  using System;
