@@ -26,6 +26,7 @@ namespace PizzaWorld
         public static OrderDetails salladOrderDetails = new OrderDetails(new ExtraMenu(new List<string>(), "Sallad", 20));
         public static OrderDetails sauceOrderDetails = new OrderDetails(new ExtraMenu(new List<string>(), "Sauce", 20));
         public static OrderDetails workingOrderDetails;
+       
 
 
         /// <summary>

@@ -39,7 +39,7 @@ namespace PizzaWorld
             {
             for (int i = 0; i < ShoppingCart.orderDetails.Count; i++)
             {
-            Console.WriteLine($"{menuItems.items[i]}                    price x"); //vi måste koppla till priset också
+            Console.WriteLine($"{ShoppingCart.orderDetails[i].orderItem.name}                     {ShoppingCart.orderDetails[i].price}"); //vi måste koppla till priset också
             }
             }
             Console.WriteLine("-------------------------------------------------------------");

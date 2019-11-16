@@ -6,14 +6,10 @@ namespace PizzaWorld
 {
     public class Payment
     {
-        public double Sum;
-        public int orderNumber;
-        OrderDetails details;
 
         public Payment()
         {
-            this.orderNumber = details.orderNr;
-            this.Sum = details.totalSum;
+
         }
 
         public int AddPinCode()
