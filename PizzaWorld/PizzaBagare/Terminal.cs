@@ -17,6 +17,7 @@ namespace PizzaBagare
 
         private Timer _timer;
         private SoundPlayer _player = new SoundPlayer(@"C:\Windows\media\Alarm01.wav");
+        private bool _isPlaying = false;
 
         // Kör programmet
         public void Start(Data data, Display display)
@@ -51,6 +52,7 @@ namespace PizzaBagare
                 {
                     Chef = null;
                     _player.Stop();
+                    _isPlaying = false;
                     return;
                 }
 
@@ -60,6 +62,7 @@ namespace PizzaBagare
             // Ta bort efter sidbyte
             _timer.Dispose();
             _player.Stop();
+            _isPlaying = false;
 
 
             // Hämtar vald order från Orders via index
@@ -133,7 +136,7 @@ namespace PizzaBagare
         // Uppdatera orderstatus när pizzan är klar
         private void OrderInOven(Order order) =>
             Task.Delay(TimeSpan.FromSeconds(15))
-            .ContinueWith(t => order.Status = OrderStatus.Done);
+            .ContinueWith(_ => order.Status = OrderStatus.Done);
 
         private void OrderComplete(Order order, Display display)
         {
@@ -143,7 +146,7 @@ namespace PizzaBagare
 
             // Ta bort ordern efter delay
             Task.Delay(TimeSpan.FromSeconds(5))
-                .ContinueWith(t => Orders.Remove(order));
+                .ContinueWith(_ => Orders.Remove(order));
         }
 
         // Inloggning för bagare
@@ -197,9 +200,10 @@ namespace PizzaBagare
         {
             foreach (var order in Orders)
             {
-                if (order.Status == OrderStatus.Done)
+                if (order.Status == OrderStatus.Done && !_isPlaying)
                 {
-                    Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(t => _player.Play());
+                    Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(_ => _player.PlayLooping());
+                    _isPlaying = true;
                 }
             }
         }
