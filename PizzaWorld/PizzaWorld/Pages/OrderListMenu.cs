@@ -15,9 +15,9 @@ namespace PizzaWorld.Pages
         }
         public override void Display()
         {
-            int x = 0;
             double totalPrice = 0;
             ConsoleKey input;
+            int totalQty = 0;
 
             //Menu visar bara pizzor. Om jag väljer någonting annat, det syns inte här.
 
@@ -29,11 +29,10 @@ namespace PizzaWorld.Pages
                 for (int i = 0; i < ShoppingCart.orderDetails.Count; i++)
                 {
                     Console.WriteLine(i + ". " + "Item: " + ShoppingCart.orderDetails[i].orderItem.name + " " + "Qty: "+ ShoppingCart.orderDetails[i].qty + " " + "Price: " + ShoppingCart.orderDetails[i].price + ":-");
-                    x++;
                     totalPrice = totalPrice + ShoppingCart.orderDetails[i].price;
                 }
                 Console.WriteLine("\n");
-                Console.WriteLine($"Number of items: {x}"  + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
+                Console.WriteLine($"Number of items: " + ShoppingCart.CountQty() + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
                 Console.WriteLine("-----------------------------------------------------------" +
                     "-");
                 Console.WriteLine("\n");
@@ -61,9 +60,9 @@ namespace PizzaWorld.Pages
                     Console.WriteLine("Enter number of the orderline to delete it:");
                     int input2 = Convert.ToInt32(Console.ReadLine());
                     ShoppingCart.DeleteOrder(input2);
+
                 }
 
-                //nu blir antal rätt för total antal men på order rad är det fel.
                 else if (input == ConsoleKey.Q)
                 {
                     Console.WriteLine("Enter number of the orderline to change quantity to it and then press Enter:");
