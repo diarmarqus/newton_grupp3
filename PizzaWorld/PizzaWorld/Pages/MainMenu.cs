@@ -35,7 +35,8 @@ namespace PizzaWorld.Pages
                     // Goes to the ingredients page to buy extras or change ingredients
                     program.NavigateTo<IngredientsMenu>(); 
                 } else if (input == b+1){
-                    program.NavigateTo<OrderListMenu>();
+                    if (ShoppingCart.orderDetails.Count != 0)   // needs a order 
+                        program.NavigateTo<OrderListMenu>();
                 }
                 Console.Clear();
             }

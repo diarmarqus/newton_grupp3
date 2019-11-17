@@ -16,7 +16,6 @@ namespace PizzaWorld
         // Variables that stores all the orders the users has picked
         public static List<OrderDetails> orderDetails = new List<OrderDetails>();
         public static OrderDetails workingOrderDetails;
-       
 
         public static void addOrder(OrderDetails aOrderDetails)
         {
