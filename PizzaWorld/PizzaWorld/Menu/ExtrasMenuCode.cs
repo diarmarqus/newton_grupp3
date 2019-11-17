@@ -151,7 +151,7 @@ namespace PizzaWorld
             char input;
             int input_value;
             PrintMenu();
-            Console.Write("Choose an option(1-9 for category, a-z for items and Enter to accept)\n:");
+            Console.Write("Choose an option(1-4 for category, a-z for items and Enter to accept)\n:");
 
             input = Console.ReadKey().KeyChar;
             if (char.IsDigit(input))
