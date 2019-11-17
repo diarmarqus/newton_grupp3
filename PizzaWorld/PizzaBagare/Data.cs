@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -25,23 +26,25 @@ namespace PizzaBagare
             TimedOrders();
         }
 
+        public Chef GetChef(int pin) => Chefs.FirstOrDefault(c => c.Pin == pin);
+
         private void TimedOrders()
         {
-            // Starta ny tidsintervall 5s
-            Timer timer = new Timer(1000 * 5);
+            // Starta ny tidsintervall 2.5s
+            Timer timer = new Timer(2500);
 
-            // Öka tidsintervall efter 30s till 15s
-            Task.Delay(TimeSpan.FromSeconds(30))
-                .ContinueWith(t => timer.Stop())
-                .ContinueWith(t => timer.Interval = 1000 * 15)
-                .ContinueWith(t => timer.Start());
-
-            // Hämtar Timer_Elapsed (ny order) varje intervall
-            timer.Elapsed += Timer_Elapsed;
+            // Hämtar OnTimedEvent (ny order) varje intervall
+            timer.Elapsed += OnTimedEvent;
             timer.Start();
+
+            // Öka tidsintervall
+            Task.Delay(TimeSpan.FromSeconds(10))
+                .ContinueWith(_ => timer.Interval = 1000 * 5);
+            Task.Delay(TimeSpan.FromSeconds(35))
+                .ContinueWith(_ => timer.Interval = 1000 * 15);
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             if (_counter >= _dataOrders.Count)
             {
@@ -50,12 +53,7 @@ namespace PizzaBagare
 
             try
             {
-                Order order = _dataOrders[_counter];
-
-                Orders.Add(new Order(
-                    orderNumber: _rnd.Next(1000, 4999),
-                    pizzas: order.Pizzas,
-                    extras: order.Extras));
+                AddOrder();
             }
             catch (Exception ex)
             {
@@ -67,17 +65,28 @@ namespace PizzaBagare
             }
         }
 
-        public void AddData()
+        private void AddOrder()
+        {
+            Order order = _dataOrders[_counter];
+
+            Orders.Add(new Order(
+                orderNumber: _rnd.Next(1000, 4999),
+                pizzas: order.Pizzas,
+                extras: order.Extras));
+        }
+
+        private void AddData()
         {
             Chefs.Add(new Chef(pin: 111, "Pizzabagare 1"));
             Chefs.Add(new Chef(pin: 222, "Pizzabagare 2"));
             Chefs.Add(new Chef(pin: 333, "Pizzabagare 3"));
+            Chefs.Add(new Chef(pin: 123, "Pizzabagare 4"));
 
             _dataOrders.Add(new Order(
                 1,
                 new List<Pizza>() {
                     new Pizza("Vesuvio"),
-                    new Pizza("Kebab")
+                    new Pizza("Egen", new List<string> { "Ost", "Paprika", "Tomater", "Ruccola", "Fetaost" }, "Stor", PizzaBase.American)
                 },
                 new List<Extra>() {
                     new Extra("Cola", "Mellan"),
