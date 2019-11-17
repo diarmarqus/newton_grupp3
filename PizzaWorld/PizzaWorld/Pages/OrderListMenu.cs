@@ -25,6 +25,7 @@ namespace PizzaWorld.Pages
             {
                 base.Display();
                 Console.WriteLine("Order number: " + ShoppingCart.orderDetails[0].orderNr);
+                totalPrice = 0;
                 for (int i = 0; i < ShoppingCart.orderDetails.Count; i++)
                 {
                     Console.WriteLine(i + ". " + "Item: " + ShoppingCart.orderDetails[i].orderItem.name + " " + "Qty: "+ ShoppingCart.orderDetails[i].qty + " " + "Price: " + ShoppingCart.orderDetails[i].price + ":-");
@@ -32,7 +33,7 @@ namespace PizzaWorld.Pages
                     totalPrice = totalPrice + ShoppingCart.orderDetails[i].price;
                 }
                 Console.WriteLine("\n");
-                Console.WriteLine($"Number of items: {x}"  + " " + " " + " " + " " + "Total price: " + totalPrice + ":-");
+                Console.WriteLine($"Number of items: {x}"  + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
                 Console.WriteLine("-----------------------------------------------------------" +
                     "-");
                 Console.WriteLine("\n");
@@ -59,7 +60,7 @@ namespace PizzaWorld.Pages
                 {
                     Console.WriteLine("Enter number of the orderline to delete it:");
                     int input2 = Convert.ToInt32(Console.ReadLine());
-                    //ShoppingCart.DeleteOrder(0, input2);
+                    ShoppingCart.DeleteOrder(input2);
                 }
 
                 //nu blir antal rätt för total antal men på order rad är det fel.

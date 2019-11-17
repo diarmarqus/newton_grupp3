@@ -31,12 +31,14 @@ namespace PizzaWorld
         public bool[] checked_item;
         public bool radio_or_not;
         public string category;
+        public int numberOfItems;
         public bar_menu(string category, List<string> menu, bool radio_or_not)
         {
+            numberOfItems = menu.Count;
             this.category = category;
             this.menu = menu;
             this.radio_or_not = radio_or_not;
-            checked_item = new bool[menu.Count];
+            checked_item = new bool[numberOfItems];
             for (int i = 0; i < menu.Count; i++)
             {
                 checked_item[i] = false;
@@ -88,7 +90,7 @@ namespace PizzaWorld
         /// <returns></returns>
         public bool CheckItem(int nr)
         {
-            if (nr < 0 && nr > numberOfRows) return false;
+            if (nr < 0 || nr >= all_menus[choosen_row].numberOfItems) return false;
             if (all_menus[choosen_row].radio_or_not == false)
             {
                 if (all_menus[choosen_row].checked_item[nr] == false)

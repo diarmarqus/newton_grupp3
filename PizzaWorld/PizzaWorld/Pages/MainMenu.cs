@@ -24,7 +24,6 @@ namespace PizzaWorld.Pages
             {
                 base.Display();
 
-
                 Menu.DisplayPizzas(0, b);
                 Console.WriteLine(b+1 + ". Go to checkout "  + Menu.numberOfPizzas);
                 Console.WriteLine("nr of orders: " + ShoppingCart.orderDetails.Count);
