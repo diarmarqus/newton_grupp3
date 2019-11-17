@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,6 +11,11 @@ namespace PizzaBagare
     /// </summary>
     class Terminal
     {
+        public Terminal(Data data)
+        {
+            this.Orders = data.Orders;
+        }
+
         private List<Order> Orders { get; set; }
         private Chef Chef { get; set; }
 
@@ -20,25 +24,11 @@ namespace PizzaBagare
         private bool _isPlaying = false;
 
         // Kör programmet
-        public void Start(Data data, Display display)
+        public void Run(Data data, Display display)
         {
-            if (_timer != null)
-            {
-                _timer.Dispose();
-            }
+            Login(data, display);
 
-            // Visa loginskärmen om ingen är inloggad
-            if (Chef == null)
-            {
-                Login(data, display);
-            }
-
-            Run(data, display);
-        }
-
-        private void Run(Data data, Display display)
-        {
-            DisplayOrders(data, display);
+            DisplayOrders(display);
             FlushInputCache();
 
             int index = 0;
@@ -51,8 +41,7 @@ namespace PizzaBagare
                 if (input == 'l')
                 {
                     Chef = null;
-                    _player.Stop();
-                    _isPlaying = false;
+                    StopActiveEvents();
                     return;
                 }
 
@@ -60,16 +49,57 @@ namespace PizzaBagare
             }
 
             // Ta bort efter sidbyte
-            _timer.Dispose();
-            _player.Stop();
-            _isPlaying = false;
-
+            StopActiveEvents();
 
             // Hämtar vald order från Orders via index
-            Order order = GetOrderDetails(index);
-
-            DisplayOrderDetails(display, order);
+            DisplayOrderDetails(display, GetOrder(index));
         }
+
+        private void Login(Data data, Display display)
+        {
+            if (_timer != null)
+            {
+                _timer.Dispose();
+            }
+
+            if (Chef != null)
+            {
+                return;
+            }
+
+            display.PrintTopInfo("Logga in");
+
+            // Loopar loginskärm tills korrekt pin är angedd
+            while (Chef == null)
+            {
+                Console.Write("Pin: ");
+
+                // Verfiera att userinput är en siffra
+                if (!int.TryParse(Console.ReadLine(), out int pin))
+                {
+                    display.PrintTopInfo("Endast siffror");
+                    continue;
+                }
+
+                // Verifiera om det finns en bagare med den angivna pinkoden
+                Chef = data.GetChef(pin);
+
+                if (Chef == null)
+                {
+                    display.PrintTopInfo("Fel kod");
+                }
+            }
+        }
+
+        // Uppdaterar ordersidan var 5e sekund (TimeSpan.FromSeconds(5))
+        private void DisplayOrders(Display display) =>
+            _timer = new Timer((e) =>
+            {
+                display.PrintTopInfo("Inloggad: " + Chef.Name);
+                display.PrintOrders(Orders);
+                display.PrintBottomInfo(false);
+                PizzaAlarm();
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
         private void DisplayOrderDetails(Display display, Order order)
         {
@@ -102,19 +132,6 @@ namespace PizzaBagare
 
             UpdateOrder(input, order, display);
         }
-
-        private void SetOrders(Data data) => this.Orders = data.Orders;
-
-        // Uppdaterar ordersidan var 5e sekund (TimeSpan.FromSeconds(5))
-        private void DisplayOrders(Data data, Display display) =>
-            _timer = new Timer((e) =>
-            {
-                SetOrders(data);
-                display.PrintTopInfo("Inloggad: " + Chef.Name);
-                display.PrintOrders(Orders);
-                display.PrintBottomInfo(false);
-                PizzaAlarm();
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
         private void UpdateOrder(char input, Order order, Display display)
         {
@@ -149,40 +166,8 @@ namespace PizzaBagare
                 .ContinueWith(_ => Orders.Remove(order));
         }
 
-        // Inloggning för bagare
-        private void Login(Data data, Display display)
-        {
-            display.PrintTopInfo("Logga in");
-            VerifyPin(data, display);
-            SetOrders(data);
-        }
-
-        // Loop tills korrekt pin är angedd 
-        private void VerifyPin(Data data, Display display)
-        {
-            while (Chef == null)
-            {
-                Console.Write("Pin: ");
-
-                // Verfiera att userinput är en siffra
-                if (!int.TryParse(Console.ReadLine(), out int pin))
-                {
-                    display.PrintTopInfo("Endast siffror");
-                    continue;
-                }
-
-                // Verifiera om det finns en bagare med den angivna pinkoden
-                Chef = data.Chefs.FirstOrDefault(c => c.Pin == pin);
-
-                if (Chef == null)
-                {
-                    display.PrintTopInfo("Fel kod");
-                }
-            }
-        }
-
-        // Hämta all info om vald order via index
-        private Order GetOrderDetails(int index)
+        // Hämta vald order via index
+        private Order GetOrder(int index)
         {
             try
             {
@@ -202,10 +187,17 @@ namespace PizzaBagare
             {
                 if (order.Status == OrderStatus.Done && !_isPlaying)
                 {
-                    Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(_ => _player.PlayLooping());
+                    _player.PlayLooping();
                     _isPlaying = true;
                 }
             }
+        }
+
+        private void StopActiveEvents()
+        {
+            _timer.Dispose();
+            _player.Stop();
+            _isPlaying = false;
         }
 
         // Rensa cachade knapptryck

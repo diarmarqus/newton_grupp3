@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PizzaBagare
 {
@@ -16,5 +17,30 @@ namespace PizzaBagare
         public List<Pizza> Pizzas { get; set; }
         public List<Extra> Extras { get; set; }
         public OrderStatus Status { get; set; }
+
+
+        public string GetPizzas()
+        {
+            string pizzas = "";
+
+            foreach (var pizza in Pizzas)
+            {
+                pizzas += pizza.GetPizza() + Environment.NewLine;
+            }
+
+            return pizzas;
+        }
+
+        public string GetExtras()
+        {
+            string extras = "";
+
+            foreach (var extra in Extras)
+            {
+                extras += extra.GetExtra() + Environment.NewLine;
+            }
+
+            return extras;
+        }
     }
 }

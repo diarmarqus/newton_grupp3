@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -25,20 +26,22 @@ namespace PizzaBagare
             TimedOrders();
         }
 
+        public Chef GetChef(int pin) => Chefs.FirstOrDefault(c => c.Pin == pin);
+
         private void TimedOrders()
         {
-            // Starta ny tidsintervall 5s
-            Timer timer = new Timer(1000 * 2);
+            // Starta ny tidsintervall 2.5s
+            Timer timer = new Timer(2500);
 
             // Hämtar OnTimedEvent (ny order) varje intervall
             timer.Elapsed += OnTimedEvent;
             timer.Start();
 
             // Öka tidsintervall
-            Task.Delay(TimeSpan.FromSeconds(5))
+            Task.Delay(TimeSpan.FromSeconds(10))
                 .ContinueWith(_ => timer.Interval = 1000 * 5);
-            Task.Delay(TimeSpan.FromSeconds(30))
-                .ContinueWith(_ => timer.Interval = 1000 * 10);
+            Task.Delay(TimeSpan.FromSeconds(35))
+                .ContinueWith(_ => timer.Interval = 1000 * 15);
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
@@ -72,7 +75,7 @@ namespace PizzaBagare
                 extras: order.Extras));
         }
 
-        public void AddData()
+        private void AddData()
         {
             Chefs.Add(new Chef(pin: 111, "Pizzabagare 1"));
             Chefs.Add(new Chef(pin: 222, "Pizzabagare 2"));
@@ -83,7 +86,7 @@ namespace PizzaBagare
                 1,
                 new List<Pizza>() {
                     new Pizza("Vesuvio"),
-                    new Pizza("Kebab")
+                    new Pizza("Egen", new List<string> { "Ost", "Paprika", "Tomater", "Ruccola", "Fetaost" }, "Stor", PizzaBase.American)
                 },
                 new List<Extra>() {
                     new Extra("Cola", "Mellan"),
