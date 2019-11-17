@@ -20,6 +20,7 @@ namespace PizzaWorld
             AddPage(new IngredientsMenu(this));
             AddPage(new OrderListMenu(this));
             AddPage(new PayMenu(this));
+            AddPage(new Receipt(this));
 
             SetPage<StartMenu>();
         }
