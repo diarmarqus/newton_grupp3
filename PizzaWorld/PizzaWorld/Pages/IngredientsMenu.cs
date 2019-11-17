@@ -26,7 +26,7 @@ namespace PizzaWorld.Pages
             List<string> basePizza = new List<string>();
             basePizza.Add("American");
             basePizza.Add("Italian");
-            iMenu.AddRow("Välj Bas.", basePizza, true);
+            iMenu.AddRow("Choose a crust.", basePizza, true);
             List<string> ingredients = new List<string>(Menu.ingredients);
             iMenu.AddRow("Choose Ingredients:", Menu.ingredients, false);
 

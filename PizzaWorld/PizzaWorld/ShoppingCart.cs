@@ -31,6 +31,16 @@ namespace PizzaWorld
             orderDetails[place].qty = change;
 
         }
+        public static int CountQty()
+        {
+            int sum = 0;
+            foreach (var item in orderDetails)
+            {
+                sum = sum + item.qty;
+            }
+            return sum;
+
+        }
 
         public static int CountTotalSum()
         {
