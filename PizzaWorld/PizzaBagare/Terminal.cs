@@ -100,7 +100,7 @@ namespace PizzaBagare
                 display.PrintOrders(Orders);
                 display.PrintBottomInfo(false);
                 PizzaAlarm();
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(2.5));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(2));
 
         private void DisplayOrderDetails(Display display, Order order)
         {
@@ -122,7 +122,9 @@ namespace PizzaBagare
 
                 Console.WriteLine("Är ordern klar? J/N");
 
-                if (Console.ReadKey(true).KeyChar == 'j')
+                var key = Console.ReadKey(true).KeyChar;
+
+                if (key == 'j' || key == '1')
                 {
                     break;
                 }
@@ -153,17 +155,17 @@ namespace PizzaBagare
 
         // Uppdatera orderstatus när pizzan är klar
         private void OrderInOven(Order order) =>
-            Task.Delay(TimeSpan.FromSeconds(15))
+            Task.Delay(TimeSpan.FromSeconds(12))
             .ContinueWith(_ => order.Status = OrderStatus.Done);
 
         private void OrderComplete(Order order, Display display)
         {
             // Skriver ut ordernummret under 2 sek
             display.PrintOrderNumber(order);
-            Thread.Sleep(2000);
+            Thread.Sleep(1500);
 
             // Ta bort ordern efter delay
-            Task.Delay(TimeSpan.FromSeconds(5))
+            Task.Delay(TimeSpan.FromSeconds(2))
                 .ContinueWith(_ => Orders.Remove(order));
         }
 

@@ -31,7 +31,7 @@ namespace PizzaBagare
         private void TimedOrders()
         {
             // Starta ny tidsintervall 2.5s
-            Timer timer = new Timer(2500);
+            Timer timer = new Timer(2000);
 
             // Hämtar OnTimedEvent (ny order) varje intervall
             timer.Elapsed += OnTimedEvent;
@@ -39,9 +39,9 @@ namespace PizzaBagare
 
             // Öka tidsintervall
             Task.Delay(TimeSpan.FromSeconds(10))
-                .ContinueWith(_ => timer.Interval = 1000 * 5);
+                .ContinueWith(_ => timer.Interval = 1000 * 6);
             Task.Delay(TimeSpan.FromSeconds(35))
-                .ContinueWith(_ => timer.Interval = 1000 * 15);
+                .ContinueWith(_ => timer.Interval = 1000 * 12);
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
