@@ -13,5 +13,7 @@
 
         public string Item { get; set; }
         public string Size { get; set; }
+
+        public string GetExtra() => $" - {Item} {Size}";
     }
 }

@@ -13,11 +13,11 @@ namespace PizzaBagare
 
             Data data = new Data();
             Display display = new Display();
-            Terminal terminal = new Terminal();
+            Terminal terminal = new Terminal(data);
 
             while (true)
             {
-                terminal.Start(data, display);
+                terminal.Run(data, display);
             }
         }
     }
