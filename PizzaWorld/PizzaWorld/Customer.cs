@@ -6,7 +6,7 @@ namespace PizzaWorld
 {
    public class Customer
     {
-        public int customerID;
+        public int customerID { get; set; }
 
         public Customer()
         {

@@ -10,18 +10,28 @@ namespace PizzaWorld
     /// </summary>
     public class Menu
     {
-        public static int numberOfPizzas = 0;
-        public static List<Pizza> standardPizza = new List<Pizza>();
-        public static List<string> ingredients = new List<string>() {"Tomato Sauce","Cheese","Ham","Basil","Pineapple", "Mussels",
+        private static int _numberOfPizzas = 0;
+        private static List<Pizza> _standardPizza = new List<Pizza>();
+        private static List<string> _ingredients = new List<string>() {"Tomato Sauce","Cheese","Ham","Basil","Pineapple", "Mussels",
  "Scampi", "Octopus", "Garlic", "Capers", "Mozzarella", "Gorgonzola", "Parmesan", "Mushrooms", "Kebab", "Ruccola"};
-        public static List<List<int>> pizzaNr = new List<List<int>>(); 
-        public static List<string> drinks = new List<string>() { "Cola cola", "Fanta", "Water", "Sprite" };
-        public static List<string> sallad = new List<string>() { "Pizza salad", "Olives", "Fefferoni" };
-        public static List<string> sauce = new List<string>() { "Mayo", "Bearnaise", "Garlic mayo" };
+        private static List<List<int>> _pizzaNr = new List<List<int>>(); 
+        private static List<string> _drinks = new List<string>() { "Cola cola", "Fanta", "Water", "Sprite" };
+        private static List<string> _sallad = new List<string>() { "Pizza salad", "Olives", "Fefferoni" };
+        private static List<string> _sauce = new List<string>() { "Mayo", "Bearnaise", "Garlic mayo" };
 
-        static List<Pizza> customerPizza = new List<Pizza>();
-        public static ExtraMenu extraMenu;
- 
+        //static List<Pizza> customerPizza = new List<Pizza>();
+        private static ExtraMenu _extraMenu;
+
+        public static int numberOfPizzas { get { return _numberOfPizzas; } set { _numberOfPizzas = value; } }
+        public static List<Pizza> standardPizza { get { return _standardPizza; } set { _standardPizza = value; } }
+        public static List<string> ingredients { get { return _ingredients; } set { _ingredients = value; } }
+        public static List<List<int>> pizzaNr { get { return _pizzaNr; } set { _pizzaNr = value; } }
+        public static List<string> drinks { get { return _drinks; } set { _drinks = value; } }
+        public static List<string> sallad { get { return _sallad; } set { _sallad = value; } }
+        public static List<string> sauce { get { return _sauce; } set { _sauce = value; } }
+        public static ExtraMenu extraMenu { get { return _extraMenu; } set { _extraMenu = value; } }
+
+
         /// <summary>
         /// Creates the standard pizza menu
         /// 
@@ -58,10 +68,10 @@ namespace PizzaWorld
         }
 
 
-        public void AddCustomerPizza(Pizza pizza)
-        {
-            customerPizza.Add(pizza);
-        }
+        //public void AddCustomerPizza(Pizza pizza)
+        //{
+        //    customerPizza.Add(pizza);
+        //}
 
         /// <summary>
         /// just prints out standard pizzas

@@ -11,11 +11,12 @@ namespace PizzaWorld
     public class OrderDetails
     {
         int _qty;
-        public int orderNr;
-        public int qty { get { return _qty; } set { _qty = value; price = orderItem.totalPrice * _qty; } }
-        public int price;
-        public double totalSum;
-        public MenuItems orderItem = new MenuItems(null, null);
+        private MenuItems _orderItem = new MenuItems(null, null);
+        public int orderNr { get; set; }
+        public int qty { get { return _qty; } set { _qty = value; price = _orderItem.totalPrice * _qty; } }
+        public int price { get; set; }
+        public double totalSum { get; set; }
+        public MenuItems orderItem { get; set; }
 
         public OrderDetails(MenuItems orderItem)
         {

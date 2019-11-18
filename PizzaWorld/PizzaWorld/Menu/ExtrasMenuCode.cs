@@ -12,12 +12,6 @@ using EasyConsoleCore;
 
 namespace PizzaWorld
 {
-    enum alphabet
-    {
-        a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10,
-        l = 11, m = 12, n = 13, o = 15, p = 16, q = 17, r = 18, s = 19, t = 20, u = 21,
-        v = 21, x = 22, y = 23, z = 24
-    }
 
     /// <summary>
     /// A struct to collect the data of every row
@@ -32,6 +26,7 @@ namespace PizzaWorld
         public bool radio_or_not;
         public string category;
         public int numberOfItems;
+
         public bar_menu(string category, List<string> menu, bool radio_or_not)
         {
             numberOfItems = menu.Count;
@@ -47,9 +42,10 @@ namespace PizzaWorld
     }
     public class ExtrasMenuCode
     {
-        public List<bar_menu> all_menus;
+        public List<bar_menu> all_menus { get; set; }
+        public int numberOfRows { get; set; }
         int choosen_row;
-        public int numberOfRows;
+        
 
         public ExtrasMenuCode()
         {
@@ -126,7 +122,7 @@ namespace PizzaWorld
                     check = (all_menus[i].checked_item[j] == true) ? '*' : ' ';
                     if (choosen_row == i)
                     {
-                        Console.Write($"{((alphabet)j).ToString()}.{check}{pMenu[j]}");
+                        Console.Write($"{(char)(j+97)}.{check}{pMenu[j]}");
                     }
                     else
                     {

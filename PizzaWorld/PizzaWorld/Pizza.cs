@@ -13,7 +13,7 @@ namespace PizzaWorld
     public class Pizza : MenuItems
     {
         private PizzaBase pBase;
-        int pricePerItem = 20;
+        private int pricePerItem = 20;
 
         public Pizza(PizzaBase pBase, List<string> items, string name, int menuNr) : base(items, name, menuNr)
         {
