@@ -10,7 +10,7 @@ namespace PizzaWorld.Pages
 
         EasyConsoleCore.Program program;
         public StartMenu(EasyConsoleCore.Program program)
-                : base("Welcome to Pizza Palatset", program)
+                : base("Pizza Palatset", program)
 
          {
             this.program = program;

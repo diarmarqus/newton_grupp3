@@ -109,7 +109,7 @@ namespace PizzaWorld
         /// </summary>
         private void PrintMenu()
         {
-            Console.WriteLine(ShoppingCart.workingOrderDetails.orderItem.name);
+            ConsoleColor.Red.WriteLine(ShoppingCart.workingOrderDetails.orderItem.name);
             for (int i = 0; i < all_menus.Count; i++)
             {
                 List<string> pMenu = all_menus[i].menu;
