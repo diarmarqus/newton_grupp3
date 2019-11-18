@@ -110,16 +110,9 @@ namespace Utcheckningsterminal
             aaTimer.Enabled = true;
             while (true)
             {
-
                 Console.Clear();
-                foreach (sPizza pizza in pizzaList)
-                {
-                    if (pizza.state == 0)
-                        Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \t\twith extra toppings:" + pizza.extra + "\t\t\t state: Ready for checkout!");
-                    //currentPizza  ;
-                }
 
-                Console.WriteLine("\nPIZZA CHECKOUT. Check out pizza number:");
+                Console.Write("\nPIZZA CHECKOUT. Check out pizza number:");
 
                 string pizzanumber = Console.ReadLine();
                 int number = -1;
@@ -128,16 +121,11 @@ namespace Utcheckningsterminal
                 /* Make sure no one tries to delete an empty array */
                 for (int i = pizzaList.Count - 1; i > -1; i--)
                 {
-
                     if (pizzaList[i].ordernumber == number)
                     {
                         pizzaList.RemoveAt(i);
                     }
                 }
-
-
-
-
             }
         }
     }
