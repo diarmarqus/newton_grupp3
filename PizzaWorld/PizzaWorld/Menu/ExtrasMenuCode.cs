@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EasyConsoleCore;
+using ConsoleTables;
 
 /// <summary>
 /// Menykoden för tillbehörssidan
@@ -76,6 +77,7 @@ namespace PizzaWorld
             {
                 all_menus[1].checked_item[allNr[i]] = true;
             }
+            all_menus[0].checked_item[1] = true;
         }
 
         /// <summary>
@@ -85,6 +87,7 @@ namespace PizzaWorld
         /// <returns></returns>
         public bool CheckItem(int nr)
         {
+            //if (nr >= numberOfRows) return false;
             if (nr < 0 || nr >= all_menus[choosen_row].numberOfItems) return false;
             if (all_menus[choosen_row].radio_or_not == false)
             {
@@ -109,37 +112,47 @@ namespace PizzaWorld
         /// </summary>
         private void PrintMenu()
         {
-            ConsoleColor.Red.WriteLine(ShoppingCart.workingOrderDetails.orderItem.name);
+
+            var table = new ConsoleTable(ShoppingCart.workingOrderDetails.orderItem.name, "Product");
+            
+            //var rows = Enumerable.Repeat(new Int32(), 10);
+            //ConsoleTable.From<Int32>(rows).Configure(o => o.NumberAlignment = Alignment.Right).Write(Format.Alternative);
             for (int i = 0; i < all_menus.Count; i++)
             {
+                string output1 = "";
+                string output2 = "";
                 List<string> pMenu = all_menus[i].menu;
-                if (choosen_row == i) ConsoleColor.Red.Write(">");
-                Console.WriteLine($"{i}. {all_menus[i].category}");
-                Console.Write("\t");
+                if (choosen_row == i) output1 += ">";
+                output1 += $"{i}. {all_menus[i].category}";
+
                 for (int j = 0; j < pMenu.Count; j++)
                 {
-                    char check;
-                    check = (all_menus[i].checked_item[j] == true) ? '*' : ' ';
+                    char check = ' ';
+                    if (all_menus[i].checked_item[j] == true) { check = '*'; }
                     if (choosen_row == i)
                     {
-                        if (all_menus[i].checked_item[j] == true)
-                        {
-                            ConsoleColor.Green.Write($"{(char)(j+97)}.{check}{pMenu[j]}");
-                        }
-                        else
-                        {
-                            Console.Write($"{(char)(j + 97)}.{check}{pMenu[j]}");
-                        }
-                        
+                        output2 += $"{(char)(j + 97)}.{check}{pMenu[j]}";
                     }
                     else
                     {
-                        Console.Write($"{check}{pMenu[j]}");
+                        output2 += $"{check}{pMenu[j]}";
                     }
-                    Console.Write(" ");
+                    output2 += " ";
+                    if ((j + 1) % 5 == 0)
+                    {
+
+                        table.AddRow(output1, output2);
+                        output2 = "";
+
+                        output1 = "";
+
+                    }
                 }
-                Console.WriteLine();
+                table.AddRow(output1, output2);
+
+                //Console.WriteLine();
             }
+            table.Write();
         }
 
 
@@ -155,13 +168,13 @@ namespace PizzaWorld
             char input;
             int input_value;
             PrintMenu();
-            Console.Write("Choose an option(1-4 for category, a-z for items and Enter to accept)\n:");
+            Console.Write("Choose an option(0-4 for category, a-z for items and Enter to accept)\n:");
 
             input = Console.ReadKey().KeyChar;
             if (char.IsDigit(input))
             {
                 input_value = Int32.Parse(input.ToString());
-                if (input_value >= 0 && input_value <= numberOfRows)
+                if (input_value >= 0 && input_value < numberOfRows)
                 {
                     choosen_row = input_value;          // saves the marked category
                 }

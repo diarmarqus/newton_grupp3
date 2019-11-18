@@ -42,13 +42,18 @@ namespace PizzaWorld.Pages
                 base.Display();
             }
 
-
             List<string> newItems = new List<string>();
+            for (int i = 0; i < Menu.pizzaBase.Count; i++)
+            {
+                if (iMenu.all_menus[1].checked_item[i] == true)
+                    newItems.Add(Menu.ingredients[i]);
+            }
             for (int i = 0; i < Menu.ingredients.Count; i++)
             {
                 if (iMenu.all_menus[1].checked_item[i] == true)
                     newItems.Add(Menu.ingredients[i]);
             }
+            
             ShoppingCart.workingOrderDetails.orderItem.items = new List<string>(newItems);
             ShoppingCart.addOrder(ShoppingCart.workingOrderDetails);
           
