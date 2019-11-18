@@ -6,7 +6,7 @@ namespace UtlamningsTerminal
     {
         static void Main(string[] args)
         {
-            cTerminal terminal = new cTerminal();
+            Terminal terminal = new Terminal();
 
             terminal.MainLoop();
         }
