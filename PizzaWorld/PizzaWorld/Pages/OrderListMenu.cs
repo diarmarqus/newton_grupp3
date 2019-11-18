@@ -18,8 +18,10 @@ namespace PizzaWorld.Pages
             double totalPrice = 0;
             ConsoleKey input;
             int totalQty = 0;
-
             //Menu visar bara pizzor. Om jag väljer någonting annat, det syns inte här.
+
+
+
 
             while (true)
             {
@@ -35,6 +37,9 @@ namespace PizzaWorld.Pages
                 Console.WriteLine($"Number of items: " + ShoppingCart.CountQty() + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
                 Console.WriteLine("-----------------------------------------------------------" +
                     "-");
+
+
+
                 Console.WriteLine("\n");
                 Console.WriteLine("Please press 'P' to pay");
                 Console.WriteLine("Please press 'B' to go back to meny to add items");
@@ -71,7 +76,6 @@ namespace PizzaWorld.Pages
                     int input4 = Convert.ToInt32(Console.ReadLine());
                     ShoppingCart.ChangeQty(input3, input4);
                 }
-
                 Console.Clear();
 
             }

@@ -12,7 +12,6 @@ using EasyConsoleCore;
 
 namespace PizzaWorld
 {
-
     /// <summary>
     /// A struct to collect the data of every row
     /// menu            contains all the items
