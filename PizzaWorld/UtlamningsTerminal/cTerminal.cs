@@ -1,4 +1,14 @@
-﻿using System;
+﻿/* Copyright Maximilian Cornett 2019-11-16
+ * Written in a few hours after several reqeusts for whole different purposes.
+ * There is still a bug in the beeping sound which someone in the team might seem fit to fix.
+ * Otherwise I think this is what people asked for since I changed my code about 5 times before arriving here.
+ * And PS: Sure, the code might seem very C:like but why use objects when they are not needed, That, in my opinion
+ * just eats computer resources and we could check that by just adding a timer at the beginning and end of every code
+ * in this project, and I'll guarantee that this one would win. Object oriented programming is amazing but shouldn't be
+ * used where it is not needed. That just eats up your computers ram and cpu power.
+ */
+ 
+ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -76,21 +86,21 @@ namespace UtlamningsTerminal
                 extra = "mushrooms";
 
             if (randomevent == 0)
-                pizzaList.Add(new sPizza("Capricciosa", extra, currentpizza));
+                pizzaList.Add(new sPizza("Margherita", extra, currentpizza));
             else if (randomevent == 1) 
-                pizzaList.Add(new sPizza("Tropicana", extra, currentpizza));
+                pizzaList.Add(new sPizza("Frutti di mare", extra, currentpizza));
             else if (randomevent == 2) 
-                pizzaList.Add(new sPizza("Orientale", extra, currentpizza));
+                pizzaList.Add(new sPizza("Pizza di Parma", extra, currentpizza));
             else if (randomevent == 3) 
-                pizzaList.Add(new sPizza("Pepperoni", extra, currentpizza));
+                pizzaList.Add(new sPizza("Napoli", extra, currentpizza));
             else if (randomevent == 4)
-                pizzaList.Add(new sPizza("Hamburger", extra, currentpizza));
+                pizzaList.Add(new sPizza("Pizza 3 formaggi", extra, currentpizza));
             else if (randomevent == 5)
-                pizzaList.Add(new sPizza("Kebab", extra, currentpizza));
+                pizzaList.Add(new sPizza("Group3 special", extra, currentpizza));
             else if (randomevent == 6)
-                pizzaList.Add(new sPizza("4-Cheese", extra, currentpizza));
+                pizzaList.Add(new sPizza("Pizza Rosso", extra, currentpizza));
             else if (randomevent == 7)
-                pizzaList.Add(new sPizza("Peters pizza", extra, currentpizza));
+                pizzaList.Add(new sPizza("Newton", extra, currentpizza));
             currentpizza++;
         }
             // Specify what you want to happen when the Elapsed event is raised.
@@ -106,6 +116,8 @@ namespace UtlamningsTerminal
                 {
                     pizzaList[i].MoveToNextState();
                 }
+                if(pizzaList[i].state == 2)
+                    Console.Beep();
                 if (pizzaList[i].state == 3)
                     pizzaList.RemoveAt(i);
             }/*
@@ -120,16 +132,27 @@ namespace UtlamningsTerminal
                 count++;
             }*/
             Console.Clear();
-            Console.WriteLine("Here are all the current orders. Order states: (0:Just in, 1: In oven, 2: Finished and ready for pickup)");
+            Console.WriteLine("Here are all the current orders.");
+            Console.WriteLine("ORDERS JUST IN:");
             foreach (sPizza pizza in pizzaList)
             {
-                // pizza.ordernumber = currentPizza;
-                if(pizza.state == 0)
-                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Order just in");
-                else if (pizza.state == 1)
-                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: In the oven");
+                if (pizza.state == 0)
+                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra);
+                //currentPizza++;
+            }
+            Console.WriteLine("\n");
+            Console.WriteLine("\nORDERS IN MAKING:");
+            foreach (sPizza pizza in pizzaList)
+            {
+                if (pizza.state == 1)
+                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra);
+            }
+            Console.WriteLine("\n");
+            Console.WriteLine("\nORDERS READY FOR PICK UP:");
+            foreach (sPizza pizza in pizzaList)
+            {
                 if (pizza.state == 2)
-                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: Ready for pickup");
+                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \twith extra toppings:" + pizza.extra);
                 //currentPizza++;
             }
         }
@@ -137,75 +160,76 @@ namespace UtlamningsTerminal
         {
 			string key = "Max is the king";
 
-            pizzaList.Add(new sPizza("Capricciosa" , "cheese", 0));
-            pizzaList.Add(new sPizza("Tropicana", "cheese", 1));
-            pizzaList.Add(new sPizza("Orientale", "cheese", 2));
-            pizzaList.Add(new sPizza("Pepperoni", "cheese", 3));
+            pizzaList.Add(new sPizza("Margherita", "cheese", 0));
+            pizzaList.Add(new sPizza("Frutti di mare", "cheese", 1));
+            pizzaList.Add(new sPizza("Pizza di Parma", "cheese", 2));
+            pizzaList.Add(new sPizza("Pizza 3 formaggi", "cheese", 3));
+            pizzaList.Add(new sPizza("Group3 special", "cheese", 4));
+            pizzaList.Add(new sPizza("Pizza Rosso", "cheese", 5));
+            pizzaList.Add(new sPizza("Newton", "cheese", 6));
 
-            
+
             int currentPizza = 4;
             while (true){
                 SimulateNext();
                 Console.Clear();
-                Console.WriteLine("Here are all the current orders. Order states: (0:Just in, 1: In oven, 2: Finished and ready for pickup)");
+                Console.WriteLine("Here are all the current orders.");
                 foreach (sPizza pizza in pizzaList)
                 {
                    // pizza.ordernumber = currentPizza;
-                    Console.WriteLine(pizza.ordernumber+ ": " + pizza.name + " \twith extra toppings:" + pizza.extra + "\t\t\t state: "+pizza.state+ "");
+                    Console.WriteLine(pizza.ordernumber+ ": " + pizza.name + " \twith extra toppings:" + pizza.extra);
                     //currentPizza++;
                 }
-                Console.WriteLine("What do you want to do? 1. Add Pizza. 2. Delete pizza 3. Move pizza to next state");
+                //Console.WriteLine("What do you want to do? 1. Add Pizza. 2. Delete pizza 3. Move pizza to next state");
 
 
                 key = Console.ReadLine();
 
-                if (key == "1")
-                {
-                    Console.WriteLine("Add pizza. What kind?");
-                    string pizzatype = Console.ReadLine();
-                    Console.WriteLine("Ok you want to add one " + pizzatype + ", any extra toppings with that? (If no type no)");
-                    string pizzaextras = Console.ReadLine();
+                //if (key == "1")
+                //{
+                //    Console.WriteLine("Add pizza. What kind?");
+                //    string pizzatype = Console.ReadLine();
+                //    Console.WriteLine("Ok you want to add one " + pizzatype + ", any extra toppings with that? (If no type no)");
+                //    string pizzaextras = Console.ReadLine();
 
-                    pizzaList.Add(new sPizza(pizzatype, pizzaextras, currentPizza));
-                    currentPizza++; //go to next ordernumber for the next added pizza
-                }
-                else if (key == "2")
-                {
-                    Console.WriteLine("Delete pizza with order number:");
-                    string pizzanumber = Console.ReadLine();
-                    int number = Int32.Parse(pizzanumber); //int number = int.TryParse(pizzanumber);
-                    //pizzaList.RemoveAt(number- deletedpizzas);
-                    for (int i = pizzaList.Count - 1; i > -1; i--)
-                    {
-                        if (pizzaList[i].ordernumber == number)
-                        {
-                            pizzaList.RemoveAt(i);
-                        }
-                    }
-                    deletedpizzas++;
-                }
-                else if (key == "3")
-                {
-                    Console.WriteLine("Move pizza to next state with order number:");
-                    string pizzanumber = Console.ReadLine();
-                    int number = Int32.Parse(pizzanumber); //int number = int.TryParse(pizzanumber);
+                //    pizzaList.Add(new sPizza(pizzatype, pizzaextras, currentPizza));
+                //    currentPizza++; //go to next ordernumber for the next added pizza
+                //}
+                //else if (key == "2")
+                //{
+                //    Console.WriteLine("Delete pizza with order number:");
+                //    string pizzanumber = Console.ReadLine();
+                //    int number = Int32.Parse(pizzanumber); //int number = int.TryParse(pizzanumber);
+                //    //pizzaList.RemoveAt(number- deletedpizzas);
+                //    for (int i = pizzaList.Count - 1; i > -1; i--)
+                //    {
+                //        if (pizzaList[i].ordernumber == number)
+                //        {
+                //            pizzaList.RemoveAt(i);
+                //        }
+                //    }
+                //    deletedpizzas++;
+                //}
+                //else if (key == "3")
+                //{
+                //    Console.WriteLine("Move pizza to next state with order number:");
+                //    string pizzanumber = Console.ReadLine();
+                //    int number = Int32.Parse(pizzanumber); //int number = int.TryParse(pizzanumber);
 
    
-                        for (int i = pizzaList.Count - 1; i > -1; i--)
-                        {
-                            if (pizzaList[i].ordernumber == number)
-                            {
-                                if (pizzaList[i].state < 2)
-                                    pizzaList[i].MoveToNextState();
+                //        for (int i = pizzaList.Count - 1; i > -1; i--)
+                //        {
+                //            if (pizzaList[i].ordernumber == number)
+                //            {
+                //                if (pizzaList[i].state < 2)
+                //                    pizzaList[i].MoveToNextState();
                                 
-                                else
-                                    pizzaList.RemoveAt(i);
-                            }
-                        }
+                //                else
+                //                    pizzaList.RemoveAt(i);
+                //            }
+                //        }
 
-                }
-
-
+                //}
             }
 
 

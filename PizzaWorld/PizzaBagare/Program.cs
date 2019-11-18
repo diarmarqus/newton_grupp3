@@ -9,23 +9,15 @@ namespace PizzaBagare
     {
         static void Main(string[] args)
         {
+            Console.Title = "PizzaBagare Terminal";
+
             Data data = new Data();
             Display display = new Display();
-            Terminal terminal = new Terminal();
-
-            terminal.LogIn(data, display);
+            Terminal terminal = new Terminal(data);
 
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("Logged in as: " + terminal.Chef.Name);
-                terminal.GetOrders(display);
-
-                int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int index);
-
-                Console.Clear();
-                terminal.GetOrderDetails(display, index);
-                Console.ReadKey(true);
+                terminal.Run(data, display);
             }
         }
     }

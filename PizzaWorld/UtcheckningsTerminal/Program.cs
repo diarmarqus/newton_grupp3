@@ -1,17 +1,14 @@
 ﻿using System;
 
-namespace PizzaWorld
+namespace Utcheckningsterminal
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Menu menu = new Menu();
-            new MenuCode().Run();
+            cTerminal terminal = new cTerminal();
 
-            
-
-
+            terminal.start();
         }
     }
 }

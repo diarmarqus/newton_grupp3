@@ -1,69 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PizzaBagare
 {
+    /// <summary>
+    /// Hanterar utskrift av datan till konsollen
+    /// </summary>
     class Display
     {
-        public void PrintLogInInfo(string s = "")
+        public void PrintTopInfo(string s)
         {
             Console.Clear();
-            Console.WriteLine("PizzaBagare Terminal");
-            Console.WriteLine("--------------------");
-            if (!string.IsNullOrWhiteSpace(s))
+            ConsoleColor.Yellow.WriteLine("-----------------------");
+            ConsoleColor.Yellow.WriteLine(s);
+            ConsoleColor.Yellow.WriteLine("-----------------------");
+        }
+
+        public void PrintBottomInfo(bool IsOrderDetails)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("-----------------------");
+            if (IsOrderDetails)
             {
-                Console.WriteLine(s);
+                Console.WriteLine(" 1. Sätt in i ugn");
+                Console.WriteLine(" 2. Slutförd");
+                Console.WriteLine(" 3. Tillbaka");
             }
+            else
+            {
+                Console.WriteLine(" # Välj order |'L'ogga ut");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void PrintOrders(List<Order> orders)
         {
-            Console.WriteLine("#     Order#");
+            Console.WriteLine(" #   | Order# | Status");
+            int orderCount = 0;
+
             for (int i = 0; i < orders.Count; i++)
             {
-                Console.WriteLine($"#{i + 1}    {orders[i].OrderNumber} ----");
+                if (i >= 9)
+                {
+                    orderCount = i - 8;
+                    continue;
+                }
+
+                var order = orders[i];
+
+                Console.Write($" #{i + 1,-2} | {order.OrderNumber,-6} | {order.Status.GetDescription()}");
+
+                if (order.Status == OrderStatus.Done)
+                {
+                    ConsoleColor.Red.WriteLine(" <<<");
+                    continue;
+                }
+
+                Console.WriteLine();
             }
+
+            for (int i = 9; i > orders.Count; i--)
+            {
+                Console.WriteLine(" #   |        |");
+            }
+
+            Console.WriteLine(orderCount > 0 ? $" +{orderCount} väntande" : null);
         }
 
         public void PrintOrderDetails(Order order)
         {
-            Console.WriteLine($"#{order.OrderNumber} ----");
-            foreach (Pizza pizza in order.Pizzas)
+            Console.Clear();
+            PrintTopInfo("Order #" + order.OrderNumber);
+
+            Console.WriteLine(" Pizza:");
+            Console.WriteLine(order.GetPizzas());
+
+            Console.WriteLine("\n Tillbehör:");
+            Console.WriteLine(order.GetExtras());
+
+            for (int i = 6; i > order.Pizzas.Count + order.Extras.Count; i--)
             {
-                PrintPizza(pizza);
+                Console.WriteLine();
             }
 
-            foreach (Extra extra in order.Extras)
-            {
-                Console.WriteLine($"{extra.Item} {extra.Size}");
-            }
+            Console.WriteLine("Status: " + order.Status.GetDescription());
         }
 
-        private void PrintPizza(Pizza pizza)
+        public void PrintOrderNumber(Order order)
         {
-            if (pizza.Ingredients == null)
-            {
-                Console.WriteLine($"{pizza.Name} {pizza.Size} {pizza.Crust}");
-            }
-            else
-            {
-                Console.Write($"{pizza.Name} (");
-                PrintIngredients(pizza);
-                Console.WriteLine($") {pizza.Size} {pizza.Crust}");
-            }
-        }
-
-        private void PrintIngredients(Pizza pizza)
-        {
-            foreach (string ingredient in pizza.Ingredients)
-            {
-                Console.Write(ingredient);
-                if (pizza.Ingredients.IndexOf(ingredient) != pizza.Ingredients.Count - 1)
-                {
-                    Console.Write(", ");
-                }
-            }
+            PrintTopInfo("Utskrift");
+            Console.WriteLine($"Skriver ut ordernummer {order.OrderNumber}...");
         }
     }
 }

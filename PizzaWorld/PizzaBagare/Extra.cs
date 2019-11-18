@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PizzaBagare
+﻿namespace PizzaBagare
 {
     /// <summary>
     /// Tillbehör dryck/sallad/mm
@@ -17,5 +13,7 @@ namespace PizzaBagare
 
         public string Item { get; set; }
         public string Size { get; set; }
+
+        public string GetExtra() => $" - {Item} {Size}";
     }
 }
