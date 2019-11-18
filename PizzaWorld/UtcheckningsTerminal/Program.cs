@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace UtlamningsTerminal
+namespace Utcheckningsterminal
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Terminal terminal = new Terminal();
+            cTerminal terminal = new cTerminal();
 
-            terminal.MainLoop();
+            terminal.start();
         }
     }
 }

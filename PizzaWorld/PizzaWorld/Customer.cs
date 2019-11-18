@@ -4,9 +4,21 @@ using System.Text;
 
 namespace PizzaWorld
 {
-    class Customer
+   public class Customer
     {
-        public int språk { get; set; }
-        public int test { get; set; }
+        public int customerID { get; set; }
+
+        public Customer()
+        {
+
+        }
+
+        public int CreateCustomerID()
+        {
+            Random r = new Random();
+            int customerID = r.Next(1, 100);
+            return customerID;
+        }
+
     }
 }
