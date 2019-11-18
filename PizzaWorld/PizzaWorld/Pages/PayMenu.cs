@@ -15,21 +15,36 @@ namespace PizzaWorld.Pages
         }
         public override void Display()
         {
-            
-            while (true)
+            base.Display();
+            ConsoleColor.Yellow.WriteLine("PAYMENT:");
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine($"Order number: {ShoppingCart.orderDetails[0].orderNr}" + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
+            Console.WriteLine("--------------------------------------------------");
+            ConsoleColor.Red.Write("PIN: ");
+
+            string pass = "";
+            do
             {
-                base.Display();
-                Console.WriteLine($"Order number: {ShoppingCart.orderDetails[0].orderNr}" + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
-                Console.WriteLine("-----------------------------------------------------------");
-                Console.WriteLine("Ange Pinkod:" );
-                var pin = Console.ReadLine();
-                if (pin == "0000")
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                // Backspace Should Not Work
+                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
                 {
-                    program.NavigateTo<Receipt>();
+                    pass += key.KeyChar;
+                    ConsoleColor.Red.Write("*");
                 }
-                Console.Clear();
-            }
-            
+                else
+                {
+                    if (key.Key == ConsoleKey.Backspace && pass.Length > 0)
+                    {
+                        pass = pass.Substring(0, (pass.Length - 1));
+                        Console.Write("\b \b");
+                    }
+                    else if (key.Key == ConsoleKey.Enter)
+                    {
+                        program.NavigateTo<Receipt>();
+                    }
+                }
+            } while (true);
         }
     }
 }

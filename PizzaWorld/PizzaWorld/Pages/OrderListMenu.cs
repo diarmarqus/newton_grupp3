@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using EasyConsoleCore;
+using ConsoleTables;
 
 namespace PizzaWorld.Pages
 {
@@ -24,17 +25,23 @@ namespace PizzaWorld.Pages
             while (true)
             {
                 base.Display();
-                Console.WriteLine("Order number: " + ShoppingCart.orderDetails[0].orderNr);
+                Console.WriteLine("--------------------------------------------------");
+                ConsoleColor.Yellow.WriteLine("ORDER DETAILS:" + "                        Order no: " + ShoppingCart.orderDetails[0].orderNr);
+                Console.WriteLine("--------------------------------------------------");
+                //Console.WriteLine("Order no: " + ShoppingCart.orderDetails[0].orderNr);
+                var table = new ConsoleTable("No", "Product", "Qty", "Price");
                 totalPrice = 0;
                 for (int i = 0; i < ShoppingCart.orderDetails.Count; i++)
                 {
-                    Console.WriteLine(i + ". " + "Item: " + ShoppingCart.orderDetails[i].orderItem.name + " " + "Qty: "+ ShoppingCart.orderDetails[i].qty + " " + "Price: " + ShoppingCart.orderDetails[i].price + ":-");
+                    table.AddRow(i + 1, ShoppingCart.orderDetails[i].orderItem.name, ShoppingCart.orderDetails[i].qty, ShoppingCart.orderDetails[i].price);
+                    //Console.WriteLine(i + ". " + "Item: " + ShoppingCart.orderDetails[i].orderItem.name + " " + "Qty: "+ ShoppingCart.orderDetails[i].qty + " " + "Price: " + ShoppingCart.orderDetails[i].price + ":-");
                     x++;
                     totalPrice = totalPrice + ShoppingCart.orderDetails[i].price;
                 }
+                table.Write();
                 Console.WriteLine("\n");
                 Console.WriteLine($"Number of items: {x}"  + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
-                Console.WriteLine("-----------------------------------------------------------" +
+                Console.WriteLine("--------------------------------------------------" +
                     "-");
                 Console.WriteLine("\n");
                 Console.WriteLine("Please press 'P' to pay");
