@@ -90,11 +90,12 @@ namespace Utcheckningsterminal
             foreach (sPizza pizza in pizzaList)
             {
                 if (pizza.state == 0)
-                    Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \t\twith extra toppings:" + pizza.extra + "\t\t\t state: Ready for checkout!");
-                //currentPizza++;
+                    // Console.WriteLine(pizza.ordernumber   ": "   pizza.name   " \t\twith extra toppings:"   pizza.extra   "\t\t\t state: Ready for checkout!");
+                    Console.WriteLine($"{pizza.ordernumber,-2}  {pizza.name,-16} with extra toppings: {pizza.extra} ");
+                //currentPizza  ;
             }
 
-            Console.WriteLine("PIZZA CHECKOUT. Check out pizza number:");
+            Console.WriteLine("\nPIZZA CHECKOUT. Check out pizza number:");
         }
         public void start()
         {
@@ -105,7 +106,7 @@ namespace Utcheckningsterminal
             pizzaList.Add(new sPizza("Capricciosa", "Nothing", 3));
             System.Timers.Timer aaTimer = new System.Timers.Timer();
             aaTimer.Elapsed += new ElapsedEventHandler(AddRandomPizza);
-            aaTimer.Interval = 2000;
+            aaTimer.Interval += 2000;
             aaTimer.Enabled = true;
             while (true)
             {
@@ -115,25 +116,25 @@ namespace Utcheckningsterminal
                 {
                     if (pizza.state == 0)
                         Console.WriteLine(pizza.ordernumber + ": " + pizza.name + " \t\twith extra toppings:" + pizza.extra + "\t\t\t state: Ready for checkout!");
-                    //currentPizza++;
+                    //currentPizza  ;
                 }
 
-                Console.WriteLine("PIZZA CHECKOUT. Check out pizza number:");
-                
-                    string pizzanumber = Console.ReadLine();
-                    int number = -1;
-                    /* TryParse to catch errors if user inputs something other than a number */
-                    Int32.TryParse(pizzanumber, out number);
-                    /* Make sure no one tries to delete an empty array */
-                    for (int i = pizzaList.Count - 1; i > -1; i--)
-                    {
+                Console.WriteLine("\nPIZZA CHECKOUT. Check out pizza number:");
 
-                        if (pizzaList[i].ordernumber == number)
-                        {
-                            pizzaList.RemoveAt(i);
-                        }
+                string pizzanumber = Console.ReadLine();
+                int number = -1;
+                /* TryParse to catch errors if user inputs something other than a number */
+                Int32.TryParse(pizzanumber, out number);
+                /* Make sure no one tries to delete an empty array */
+                for (int i = pizzaList.Count - 1; i > -1; i--)
+                {
+
+                    if (pizzaList[i].ordernumber == number)
+                    {
+                        pizzaList.RemoveAt(i);
                     }
-                
+                }
+
 
 
 
