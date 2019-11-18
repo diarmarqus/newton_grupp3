@@ -122,6 +122,7 @@ namespace Utcheckningsterminal
                 
                     string pizzanumber = Console.ReadLine();
                     int number = -1;
+                    /* TryParse to catch errors if user inputs something other than a number */
                     Int32.TryParse(pizzanumber, out number);
                     /* Make sure no one tries to delete an empty array */
                     for (int i = pizzaList.Count - 1; i > -1; i--)
