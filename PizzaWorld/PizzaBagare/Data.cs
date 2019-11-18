@@ -85,7 +85,7 @@ namespace PizzaBagare
             _dataOrders.Add(new Order(
                 1,
                 new List<Pizza>() {
-                    new Pizza("Vesuvio"),
+                    new Pizza("Napoli"),
                     new Pizza("Egen", new List<string> { "Ost", "Paprika", "Tomater", "Ruccola", "Fetaost" }, "Stor", PizzaBase.American)
                 },
                 new List<Extra>() {
@@ -97,7 +97,7 @@ namespace PizzaBagare
                 2,
                 new List<Pizza>() {
                     new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard"),
-                    new Pizza("Kebab")
+                    new Pizza("Margherita")
                 },
                 new List<Extra>() {
                     new Extra("Pepsi", "Stor"),
@@ -110,7 +110,7 @@ namespace PizzaBagare
                 new List<Pizza>() {
                     new Pizza("Egen", new List<string> { "Ost", "Paprika", "Tomater", "Ruccola", "Fetaost" }, "Standard"),
                     new Pizza("Egen", new List<string> { "Ost", "Skinka", "Tomater" }, "Standard", PizzaBase.American),
-                    new Pizza("Vesuvio")
+                    new Pizza("Napoli")
                 },
                 new List<Extra>() {
                     new Extra("Cola", "Mellan"),
@@ -122,8 +122,8 @@ namespace PizzaBagare
             _dataOrders.Add(new Order(
                 4,
                 new List<Pizza>() {
-                    new Pizza("Vesuvio", new List<string> { "Ost", "Tomater" }, "Standard"),
-                    new Pizza("Kebab")
+                    new Pizza("Napoli", new List<string> { "Ost", "Tomater" }, "Standard"),
+                    new Pizza("Napoli")
                 },
                 new List<Extra>() {
                     new Extra("Cola", "Mellan"),
@@ -146,8 +146,8 @@ namespace PizzaBagare
             _dataOrders.Add(new Order(
                 6,
                 new List<Pizza>() {
-                    new Pizza("Vesuvio"),
-                    new Pizza("Kebab")
+                    new Pizza("Margherita"),
+                    new Pizza("Napoli ")
                 },
                 new List<Extra>() {
                     new Extra("Cola", "Mellan"),
