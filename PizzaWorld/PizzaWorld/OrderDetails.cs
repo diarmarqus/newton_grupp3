@@ -16,7 +16,7 @@ namespace PizzaWorld
         public int qty { get { return _qty; } set { _qty = value; price = _orderItem.totalPrice * _qty; } }
         public int price { get; set; }
         public double totalSum { get; set; }
-        public MenuItems orderItem { get; set; }
+        public MenuItems orderItem { get { return _orderItem; } set { _orderItem = value; } }
 
         public OrderDetails(MenuItems orderItem)
         {

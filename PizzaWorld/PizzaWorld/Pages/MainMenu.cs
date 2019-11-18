@@ -23,13 +23,15 @@ namespace PizzaWorld.Pages
             while (true)
             {
                 base.Display();
-                Console.WriteLine("\t\t\t\t\t\t\t\t\t\t\tNr of items: " + ShoppingCart.orderDetails.Count);
-                Menu.DisplayPizzas(0, b);
-                Console.WriteLine("\n");
-                Console.WriteLine("Go to checkout, press " +Menu.numberOfPizzas);
-                Console.WriteLine("\n");
 
-                Console.Write("Please enter a number:", 0, b + 1);
+                Console.WriteLine("\t\t\t\t\t\t\t\t\t\t\tNr of items: " + ShoppingCart.orderDetails.Count);
+
+                Menu.DisplayPizzas(0, b);
+                //Console.WriteLine("\n");
+                Console.WriteLine("Go to checkout, press " +Menu.numberOfPizzas);
+                //Console.WriteLine("\n");
+
+                Console.Write("Please enter a number you want to choose:", 0, b + 1);
 
                 while (true)
                 {
