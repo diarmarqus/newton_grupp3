@@ -109,10 +109,11 @@ namespace PizzaWorld
         /// </summary>
         private void PrintMenu()
         {
+            Console.WriteLine(ShoppingCart.workingOrderDetails.orderItem.name);
             for (int i = 0; i < all_menus.Count; i++)
             {
                 List<string> pMenu = all_menus[i].menu;
-                if (choosen_row == i) Console.Write(">");
+                if (choosen_row == i) ConsoleColor.Red.Write(">");
                 Console.WriteLine($"{i}. {all_menus[i].category}");
                 Console.Write("\t");
                 for (int j = 0; j < pMenu.Count; j++)
@@ -121,7 +122,15 @@ namespace PizzaWorld
                     check = (all_menus[i].checked_item[j] == true) ? '*' : ' ';
                     if (choosen_row == i)
                     {
-                        Console.Write($"{(char)(j+97)}.{check}{pMenu[j]}");
+                        if (all_menus[i].checked_item[j] == true)
+                        {
+                            ConsoleColor.Green.Write($"{(char)(j+97)}.{check}{pMenu[j]}");
+                        }
+                        else
+                        {
+                            Console.Write($"{(char)(j + 97)}.{check}{pMenu[j]}");
+                        }
+                        
                     }
                     else
                     {

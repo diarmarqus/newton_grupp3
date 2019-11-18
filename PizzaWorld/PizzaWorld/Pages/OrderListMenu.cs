@@ -19,8 +19,6 @@ namespace PizzaWorld.Pages
             double totalPrice = 0;
             ConsoleKey input;
             int totalQty = 0;
-            //Menu visar bara pizzor. Om jag väljer någonting annat, det syns inte här.
-
 
 
 
@@ -37,8 +35,7 @@ namespace PizzaWorld.Pages
                 {
                     table.AddRow(i + 1, ShoppingCart.orderDetails[i].orderItem.name, ShoppingCart.orderDetails[i].qty, ShoppingCart.orderDetails[i].price);
                     //Console.WriteLine(i + ". " + "Item: " + ShoppingCart.orderDetails[i].orderItem.name + " " + "Qty: "+ ShoppingCart.orderDetails[i].qty + " " + "Price: " + ShoppingCart.orderDetails[i].price + ":-");
-                    x++;
-                    totalPrice = totalPrice + ShoppingCart.orderDetails[i].price;
+                    //totalPrice = totalPrice + ShoppingCart.orderDetails[i].price;
                 }
                 table.Write();
                 Console.WriteLine("\n");
@@ -67,7 +64,6 @@ namespace PizzaWorld.Pages
                     program.NavigateTo<MainMenu>();
                 }
 
-                //raderar bara pizzor
                 else if (input == ConsoleKey.D)
                 {
                     Console.WriteLine("Enter number of the orderline to delete it:");
@@ -82,7 +78,7 @@ namespace PizzaWorld.Pages
                     int input3 = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Enter a number for quantity");
                     int input4 = Convert.ToInt32(Console.ReadLine());
-                    ShoppingCart.ChangeQty(input3, input4);
+                    ShoppingCart.ChangeQty(input3, input4); 
                 }
                 Console.Clear();
 
