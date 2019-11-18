@@ -28,9 +28,17 @@ namespace PizzaWorld.Pages
                 Console.WriteLine("\n");
                 Console.WriteLine("Go to checkout, press " +Menu.numberOfPizzas);
                 Console.WriteLine("\n");
-                //input = Input.ReadInt("Please enter a number:", 0, b+1);
+
                 Console.Write("Please enter a number:", 0, b + 1);
-                input = Convert.ToInt32(Console.ReadLine());
+
+                while (true)
+                {
+                    if (int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out input))
+                    {
+                        break;
+                    }
+                }
+
                 if (input >= 0 && input <= b)
                 {
                     // stores the choosen pizza in workingOrderDetails
