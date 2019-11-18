@@ -23,18 +23,22 @@ namespace PizzaWorld.Pages
             while (true)
             {
                 base.Display();
-
+                Console.WriteLine("\t\t\t\t\t\t\t\t\t\t\tNr of items: " + ShoppingCart.orderDetails.Count);
                 Menu.DisplayPizzas(0, b);
-                Console.WriteLine(b+1 + ". Go to checkout "  + Menu.numberOfPizzas);
-                Console.WriteLine("nr of orders: " + ShoppingCart.orderDetails.Count);
-                input = Input.ReadInt("Please enter an integer:", 0, b+1);
+                Console.WriteLine("\n");
+                Console.WriteLine("Go to checkout, press " +Menu.numberOfPizzas);
+                Console.WriteLine("\n");
+                //input = Input.ReadInt("Please enter a number:", 0, b+1);
+                Console.Write("Please enter a number:", 0, b + 1);
+                input = Convert.ToInt32(Console.ReadLine());
                 if (input >= 0 && input <= b)
                 {
                     // stores the choosen pizza in workingOrderDetails
                     ShoppingCart.workingOrderDetails = new OrderDetails(Menu.standardPizza[input]);
                     // Goes to the ingredients page to buy extras or change ingredients
                     program.NavigateTo<IngredientsMenu>(); 
-                } else if (input == b+1){
+                } else if (input == b + 1)
+                {
                     if (ShoppingCart.orderDetails.Count != 0)   // needs a order 
                         program.NavigateTo<OrderListMenu>();
                 }
