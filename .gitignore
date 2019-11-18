@@ -17,3 +17,5 @@
 !*.[Cc]ache/**
 /PizzaWorld/UtlamningsTerminal/obj
 /PizzaWorld/UtlamningsTerminal/bin
+/PizzaWorld/UtcheckningsTerminal/obj/Debug/netcoreapp3.0
+/PizzaWorld/UtcheckningsTerminal/obj
