@@ -12,13 +12,6 @@ using EasyConsoleCore;
 
 namespace PizzaWorld
 {
-    enum alphabet
-    {
-        a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10,
-        l = 11, m = 12, n = 13, o = 15, p = 16, q = 17, r = 18, s = 19, t = 20, u = 21,
-        v = 21, x = 22, y = 23, z = 24
-    }
-
     /// <summary>
     /// A struct to collect the data of every row
     /// menu            contains all the items
@@ -31,12 +24,15 @@ namespace PizzaWorld
         public bool[] checked_item;
         public bool radio_or_not;
         public string category;
+        public int numberOfItems;
+
         public bar_menu(string category, List<string> menu, bool radio_or_not)
         {
+            numberOfItems = menu.Count;
             this.category = category;
             this.menu = menu;
             this.radio_or_not = radio_or_not;
-            checked_item = new bool[menu.Count];
+            checked_item = new bool[numberOfItems];
             for (int i = 0; i < menu.Count; i++)
             {
                 checked_item[i] = false;
@@ -45,9 +41,10 @@ namespace PizzaWorld
     }
     public class ExtrasMenuCode
     {
-        public List<bar_menu> all_menus;
+        public List<bar_menu> all_menus { get; set; }
+        public int numberOfRows { get; set; }
         int choosen_row;
-        public int numberOfRows;
+        
 
         public ExtrasMenuCode()
         {
@@ -88,7 +85,7 @@ namespace PizzaWorld
         /// <returns></returns>
         public bool CheckItem(int nr)
         {
-            if (nr < 0 && nr > numberOfRows) return false;
+            if (nr < 0 || nr >= all_menus[choosen_row].numberOfItems) return false;
             if (all_menus[choosen_row].radio_or_not == false)
             {
                 if (all_menus[choosen_row].checked_item[nr] == false)
@@ -124,7 +121,7 @@ namespace PizzaWorld
                     check = (all_menus[i].checked_item[j] == true) ? '*' : ' ';
                     if (choosen_row == i)
                     {
-                        Console.Write($"{((alphabet)j).ToString()}.{check}{pMenu[j]}");
+                        Console.Write($"{(char)(j+97)}.{check}{pMenu[j]}");
                     }
                     else
                     {
@@ -149,7 +146,7 @@ namespace PizzaWorld
             char input;
             int input_value;
             PrintMenu();
-            Console.Write("Choose an option(1-9 for category, a-z for items and Enter to accept)\n:");
+            Console.Write("Choose an option(1-4 for category, a-z for items and Enter to accept)\n:");
 
             input = Console.ReadKey().KeyChar;
             if (char.IsDigit(input))

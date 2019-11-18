@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using EasyConsoleCore;
+using ConsoleTables;
 
 namespace PizzaWorld.Pages
 {
@@ -15,26 +16,38 @@ namespace PizzaWorld.Pages
         }
         public override void Display()
         {
-            int x = 0;
             double totalPrice = 0;
             ConsoleKey input;
-
+            int totalQty = 0;
             //Menu visar bara pizzor. Om jag väljer någonting annat, det syns inte här.
+
+
+
 
             while (true)
             {
                 base.Display();
-                Console.WriteLine("Order number: " + ShoppingCart.orderDetails[0].orderNr);
+                Console.WriteLine("--------------------------------------------------");
+                ConsoleColor.Yellow.WriteLine("ORDER DETAILS:" + "                        Order no: " + ShoppingCart.orderDetails[0].orderNr);
+                Console.WriteLine("--------------------------------------------------");
+                //Console.WriteLine("Order no: " + ShoppingCart.orderDetails[0].orderNr);
+                var table = new ConsoleTable("No", "Product", "Qty", "Price");
+                totalPrice = 0;
                 for (int i = 0; i < ShoppingCart.orderDetails.Count; i++)
                 {
-                    Console.WriteLine(i + ". " + "Item: " + ShoppingCart.orderDetails[i].orderItem.name + " " + "Qty: "+ ShoppingCart.orderDetails[i].qty + " " + "Price: " + ShoppingCart.orderDetails[i].price + ":-");
+                    table.AddRow(i + 1, ShoppingCart.orderDetails[i].orderItem.name, ShoppingCart.orderDetails[i].qty, ShoppingCart.orderDetails[i].price);
+                    //Console.WriteLine(i + ". " + "Item: " + ShoppingCart.orderDetails[i].orderItem.name + " " + "Qty: "+ ShoppingCart.orderDetails[i].qty + " " + "Price: " + ShoppingCart.orderDetails[i].price + ":-");
                     x++;
                     totalPrice = totalPrice + ShoppingCart.orderDetails[i].price;
                 }
+                table.Write();
                 Console.WriteLine("\n");
-                Console.WriteLine($"Number of items: {x}"  + " " + " " + " " + " " + "Total price: " + totalPrice + ":-");
+                Console.WriteLine($"Number of items: " + ShoppingCart.CountQty() + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
                 Console.WriteLine("-----------------------------------------------------------" +
                     "-");
+
+
+
                 Console.WriteLine("\n");
                 Console.WriteLine("Please press 'P' to pay");
                 Console.WriteLine("Please press 'B' to go back to meny to add items");
@@ -59,10 +72,10 @@ namespace PizzaWorld.Pages
                 {
                     Console.WriteLine("Enter number of the orderline to delete it:");
                     int input2 = Convert.ToInt32(Console.ReadLine());
-                    ShoppingCart.DeleteOrder(0, input2);
+                    ShoppingCart.DeleteOrder(input2);
+
                 }
 
-                //nu blir antal rätt för total antal men på order rad är det fel.
                 else if (input == ConsoleKey.Q)
                 {
                     Console.WriteLine("Enter number of the orderline to change quantity to it and then press Enter:");
@@ -71,7 +84,6 @@ namespace PizzaWorld.Pages
                     int input4 = Convert.ToInt32(Console.ReadLine());
                     ShoppingCart.ChangeQty(input3, input4);
                 }
-
                 Console.Clear();
 
             }

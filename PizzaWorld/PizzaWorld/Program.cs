@@ -6,9 +6,10 @@ namespace PizzaWorld
     {
         static void Main(string[] args)
         {
+            Menu menu = new Menu();
             new MenuCode().Run();
 
-            Menu menu = new Menu();
+            
 
 
         }

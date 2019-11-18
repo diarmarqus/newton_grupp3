@@ -26,7 +26,7 @@ namespace PizzaWorld.Pages
             List<string> basePizza = new List<string>();
             basePizza.Add("American");
             basePizza.Add("Italian");
-            iMenu.AddRow("Välj Bas.", basePizza, true);
+            iMenu.AddRow("Choose a crust.", basePizza, true);
             List<string> ingredients = new List<string>(Menu.ingredients);
             iMenu.AddRow("Choose Ingredients:", Menu.ingredients, false);
 
@@ -42,14 +42,43 @@ namespace PizzaWorld.Pages
                 base.Display();
             }
 
-            // loop through all menus and add to shopping cart
-            for (int i = 0; i < iMenu.numberOfRows-1; i++)
+
+            List<string> newItems = new List<string>();
+            for (int i = 0; i < Menu.ingredients.Count; i++)
             {
-                ShoppingCart.CreateOrder((pick_item)i, ShoppingCart.workingOrderDetails.orderItem.menuNr, iMenu.all_menus[i+1].checked_item);
+                if (iMenu.all_menus[1].checked_item[i] == true)
+                    newItems.Add(Menu.ingredients[i]);
+            }
+            ShoppingCart.workingOrderDetails.orderItem.items = new List<string>(newItems);
+            ShoppingCart.addOrder(ShoppingCart.workingOrderDetails);
+          
+            for (int i = 0; i < 3; i++)
+            {
+                if (iMenu.all_menus[2].checked_item[i] == true)
+                {
+                    ExtraMenu em = new ExtraMenu(new List<string>() { Menu.drinks[i] }, Menu.drinks[i], 20);
+                    ShoppingCart.addOrder(new OrderDetails(em));
+                }
+            }
+            newItems = new List<string>();
+            for (int i = 0; i < 3; i++)
+            {
+                if (iMenu.all_menus[3].checked_item[i] == true)
+                {
+                    ExtraMenu em = new ExtraMenu(new List<string>() { Menu.sallad[i] }, Menu.sallad[i], 20);
+                    ShoppingCart.addOrder(new OrderDetails(em));
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (iMenu.all_menus[3].checked_item[i] == true)
+                {
+                    ExtraMenu em = new ExtraMenu(new List<string>() { Menu.sauce[i] }, Menu.sauce[i], 20);
+                    ShoppingCart.addOrder(new OrderDetails(em));
+                }
             }
 
-
-            program.NavigateTo<MainMenu>();
+            program.NavigateBack();
         }
     }
 }
