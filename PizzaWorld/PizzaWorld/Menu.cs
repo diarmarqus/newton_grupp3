@@ -43,7 +43,7 @@ namespace PizzaWorld
         {
             AddItem(pizzaBase[0], new List<int>() { }, "Own choice");
             AddItem(pizzaBase[0], new List<int>() {0, 1, 3 }, "Margarita");
-            AddItem(pizzaBase[0], new List<int>() { 0, 1, 5, 7, 6, 8 }, "Frutti di mare");
+            AddItem(pizzaBase[0], new List<int>() { 0, 1, 5, 7 }, "Frutti di mare");
             AddItem(pizzaBase[0], new List<int>() { 0, 1, 2, 15 }, "Pizza di Parma");
             AddItem(pizzaBase[0], new List<int>() { 0, 1, 9 }, "Napoli");
             AddItem(pizzaBase[0], new List<int>() { 10, 11, 12 }, "Pizza 3 formaggi");

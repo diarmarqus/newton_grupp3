@@ -31,7 +31,7 @@ namespace PizzaWorld.Pages
                 Console.WriteLine("Go to checkout, press " +Menu.numberOfPizzas);
                 //Console.WriteLine("\n");
 
-                Console.Write("Please enter a number:", 0, b + 1);
+                Console.Write("Please enter a number you want to choose:", 0, b + 1);
 
                 while (true)
                 {
