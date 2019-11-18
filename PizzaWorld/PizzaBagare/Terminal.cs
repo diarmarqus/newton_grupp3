@@ -66,6 +66,8 @@ namespace PizzaBagare
                 return;
             }
 
+            FlushInputCache();
+
             display.PrintTopInfo("Logga in");
 
             // Loopar loginskärm tills korrekt pin är angedd
