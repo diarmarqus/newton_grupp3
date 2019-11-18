@@ -4,54 +4,20 @@ using System.Timers;
 
 namespace UtlamningsTerminal
 {
-    public class cTerminal
+    public class Terminal
     {
+        List<Pizza> pizzaList = new List<Pizza>();
         int currentpizza = 8;
-        public class sPizza
-        {
-            public int state, ordernumber;
-            public string name, extra;
-            public sPizza()
-            {
-                state = 0;
-                ordernumber = 0;
-                name = "";
-                extra = "";
 
-            }
-            public sPizza(string pizza, string extras)
-            {
-                state = 0;
-                ordernumber = 0;
-                name = pizza;
-                extra = extras;
-
-            }
-            public sPizza(string pizza, string extras, int ordernumberin)
-            {
-                state = 0;
-                ordernumber = ordernumberin;
-                name = pizza;
-                extra = extras;
-
-            }
-            public void MoveToNextState()
-            {
-                state++;
-
-            }
-        }
-
-        List<sPizza> pizzaList = new List<sPizza>();
         private void SimulateNext()
         {
             Random rnd = new Random();
             int randomevent = rnd.Next(2000, 4000);
-            System.Timers.Timer aTimer = new System.Timers.Timer();
+            Timer aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval += randomevent;
             aTimer.Enabled = true;
-            System.Timers.Timer aaTimer = new System.Timers.Timer();
+            Timer aaTimer = new Timer();
             aaTimer.Elapsed += new ElapsedEventHandler(AddRandomPizza);
             aaTimer.Interval += 7000;
             aaTimer.Enabled = true;
@@ -80,21 +46,21 @@ namespace UtlamningsTerminal
                 extra = "mushrooms";
 
             if (randomevent == 0)
-                pizzaList.Add(new sPizza("Margherita", extra, currentpizza));
+                pizzaList.Add(new Pizza("Margherita", extra, currentpizza));
             else if (randomevent == 1)
-                pizzaList.Add(new sPizza("Frutti di mare", extra, currentpizza));
+                pizzaList.Add(new Pizza("Frutti di mare", extra, currentpizza));
             else if (randomevent == 2)
-                pizzaList.Add(new sPizza("Pizza di Parma", extra, currentpizza));
+                pizzaList.Add(new Pizza("Pizza di Parma", extra, currentpizza));
             else if (randomevent == 3)
-                pizzaList.Add(new sPizza("Napoli", extra, currentpizza));
+                pizzaList.Add(new Pizza("Napoli", extra, currentpizza));
             else if (randomevent == 4)
-                pizzaList.Add(new sPizza("Pizza 3 formaggi", extra, currentpizza));
+                pizzaList.Add(new Pizza("Pizza 3 formaggi", extra, currentpizza));
             else if (randomevent == 5)
-                pizzaList.Add(new sPizza("Group3 special", extra, currentpizza));
+                pizzaList.Add(new Pizza("Group3 special", extra, currentpizza));
             else if (randomevent == 6)
-                pizzaList.Add(new sPizza("Pizza Rosso", extra, currentpizza));
+                pizzaList.Add(new Pizza("Pizza Rosso", extra, currentpizza));
             else if (randomevent == 7)
-                pizzaList.Add(new sPizza("Newton", extra, currentpizza));
+                pizzaList.Add(new Pizza("Newton", extra, currentpizza));
             currentpizza++;
         }
 
@@ -103,7 +69,6 @@ namespace UtlamningsTerminal
         {
             Random rnd = new Random();
             int randomevent = rnd.Next(0, pizzaList.Count);
-            int count = 0;
 
             for (int i = pizzaList.Count - 1; i > -1; i--)
             {
@@ -119,14 +84,14 @@ namespace UtlamningsTerminal
 
             Console.Clear();
             Console.WriteLine("ORDERS JUST IN:");
-            foreach (sPizza pizza in pizzaList)
+            foreach (Pizza pizza in pizzaList)
             {
                 if (pizza.state == 0)
                     Console.WriteLine($" {pizza.ordernumber,-2}  {pizza.name,-16} with extra toppings: {pizza.extra} ");
             }
             Console.WriteLine("\n");
             Console.WriteLine("\nORDERS IN MAKING:");
-            foreach (sPizza pizza in pizzaList)
+            foreach (Pizza pizza in pizzaList)
             {
                 if (pizza.state == 1)
                     Console.WriteLine($" {pizza.ordernumber,-2}  {pizza.name,-16} with extra toppings: {pizza.extra} ");
@@ -134,7 +99,7 @@ namespace UtlamningsTerminal
 
             Console.WriteLine("\n");
             Console.WriteLine("\nORDERS READY FOR PICK UP:");
-            foreach (sPizza pizza in pizzaList)
+            foreach (Pizza pizza in pizzaList)
             {
                 if (pizza.state == 2)
                     Console.WriteLine($" {pizza.ordernumber,-2}  {pizza.name,-16} with extra toppings: {pizza.extra} ");
@@ -143,13 +108,13 @@ namespace UtlamningsTerminal
 
         public void MainLoop()
         {
-            pizzaList.Add(new sPizza("Margherita", "cheese", 1));
-            pizzaList.Add(new sPizza("Frutti di mare", "cheese", 2));
-            pizzaList.Add(new sPizza("Pizza di Parma", "cheese", 3));
-            pizzaList.Add(new sPizza("Pizza 3 formaggi", "cheese", 4));
-            pizzaList.Add(new sPizza("Group3 special", "cheese", 5));
-            pizzaList.Add(new sPizza("Pizza Rosso", "cheese", 6));
-            pizzaList.Add(new sPizza("Newton", "cheese", 7));
+            pizzaList.Add(new Pizza("Margherita", "cheese", 1));
+            pizzaList.Add(new Pizza("Frutti di mare", "cheese", 2));
+            pizzaList.Add(new Pizza("Pizza di Parma", "cheese", 3));
+            pizzaList.Add(new Pizza("Pizza 3 formaggi", "cheese", 4));
+            pizzaList.Add(new Pizza("Group3 special", "cheese", 5));
+            pizzaList.Add(new Pizza("Pizza Rosso", "cheese", 6));
+            pizzaList.Add(new Pizza("Newton", "cheese", 7));
 
             SimulateNext();
             Console.Clear();
