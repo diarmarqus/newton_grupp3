@@ -1,4 +1,14 @@
-﻿using System;
+﻿/* Copyright Maximilian Cornett 2019-11-16
+ * Written in a few hours after several reqeusts for whole different purposes.
+ * There is still a bug in the beeping sound which someone in the team might seem fit to fix.
+ * Otherwise I think this is what people asked for since I changed my code about 5 times before arriving here.
+ * And PS: Sure, the code might seem very C:like but why use objects when they are not needed, That, in my opinion
+ * just eats computer resources and we could check that by just adding a timer at the beginning and end of every code
+ * in this project, and I'll guarantee that this one would win. Object oriented programming is amazing but shouldn't be
+ * used where it is not needed. That just eats up your computers ram and cpu power.
+ */
+ 
+ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
