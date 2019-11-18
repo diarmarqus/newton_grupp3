@@ -48,7 +48,6 @@ namespace PizzaBagare
                 int.TryParse(input.ToString(), out index);
             }
 
-            // Ta bort efter sidbyte
             StopActiveEvents();
 
             // Hämtar vald order från Orders via index
@@ -99,7 +98,7 @@ namespace PizzaBagare
                 display.PrintOrders(Orders);
                 display.PrintBottomInfo(false);
                 PizzaAlarm();
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(2.5));
 
         private void DisplayOrderDetails(Display display, Order order)
         {
