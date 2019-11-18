@@ -1,0 +1,20 @@
+Inledning
+Jag jobbade med Utlämningsterminalen och Utcheckningsterminalen. Jag hade velat ha dem i samma program, alternativt att de kommunicerade
+med varandra och utlämningsterminalen som simulerar pizzabeställningar och pizzor i ugnen, sen skickar dem till utcheckningsterminalen
+där man mha användarinput checkar ut en pizza. Men jag fick veta att så skulle det inte vara, de skulle inte kommunicera med varandra
+utan en skulle vara en simulering och den andra bara för utcheckning av statiskt laddade pizzor.
+Jag tror faktiskt inte att klassen var redo för ett sådant här projekt, i alla fall inte min grupp i gruppen så att säga. Det slutade med
+att jag fick skriva all kod själv utan någon hjälp. För de andra grupperna så verkar det ha fungerat lite bättre i alla fall, men jag vet
+faktiskt inte detaljer där självklart. 
+
+Rapportens Kapitel
+Rapport för hela projektet. Slutrapport
+
+Slutsatser och avslutande diskussion
+Jag är som sagt väldigt besviken på hur gruppdynamiken fungerade, för den fungerade knappt alls. Sen var jag iofs frånvarande en vecka
+men var ändå med på discord (chatt program) men fick sällan svar där, även fast människor var online. Väldigt dålig kommunikation
+over-all i hela gruppen. Det är omöjligt att jobba så, när man inte vet vad andra personer jobbar på och inte kommunicerar med varandra.
+Försökte verkligen få kontakt med folk, fråga om förslag om förbättringar osv, men fick väldigt lite respons. Sa åt andra gruppmedlemmar
+att jobba med det eller det, exempelvis lägga in en error-checking på user input, men de gjorde inte ens de minsta uppgifterna.
+Fruktansvärd dålig information och ena sekunden är det det här man vill ha, sen gör man det, och då är det helt fel och något helt annat
+som det ska vara. Så blev det hela tiden, om och om igen.
