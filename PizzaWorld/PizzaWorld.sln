@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Menu.txt = Menu.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtcheckningsTerminal", "UtcheckningsTerminal\UtcheckningsTerminal.csproj", "{68B98249-5404-42FD-B530-45144869D77D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtcheckningsTerminal", "UtcheckningsTerminal\UtcheckningsTerminal.csproj", "{68B98249-5404-42FD-B530-45144869D77D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UML", "UML", "{169AE9A7-3E01-4197-8406-281F862BDE6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
