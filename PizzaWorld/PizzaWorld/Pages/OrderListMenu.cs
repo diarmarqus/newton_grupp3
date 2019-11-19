@@ -21,9 +21,13 @@ namespace PizzaWorld.Pages
             //int totalQty = 0;
             //Menu visar bara pizzor. Om jag väljer någonting annat, det syns inte här.
 
+
+
             while (true)
             {
                 base.Display();
+                if(ShoppingCart.orderDetails.Count == 0) program.NavigateBack();
+
                 Console.WriteLine("--------------------------------------------------");
                 ConsoleColor.Yellow.WriteLine("ORDER DETAILS:" + "                        Order no: " + ShoppingCart.orderDetails[0].orderNr);
                 Console.WriteLine("--------------------------------------------------");
@@ -41,6 +45,8 @@ namespace PizzaWorld.Pages
                 Console.WriteLine("\n");
                 Console.WriteLine($"Number of items: " + ShoppingCart.CountQty() + " " + " " + " " + " " + "Total price: " + ShoppingCart.CountTotalSum() + ":-");
                 Console.WriteLine("-----------------------------------------------------------" + "-");
+
+
 
                 Console.WriteLine("\n");
                 Console.WriteLine("Please press 'P' to pay");
@@ -65,19 +71,29 @@ namespace PizzaWorld.Pages
                 else if (input == ConsoleKey.D)
                 {
                     Console.WriteLine("Enter number of the orderline to delete it:");
-                    int input2 = Convert.ToInt32(Console.ReadLine());
-                    ShoppingCart.DeleteOrder(input2);
-
+                    try
+                    {
+                        int input2 = Convert.ToInt32(Console.ReadLine());
+                        ShoppingCart.DeleteOrder(input2);
+                    } catch(Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
                 }
 
                 else if (input == ConsoleKey.Q)
                 {
-                    Console.WriteLine("Enter number of the orderline to change quantity to it and then press Enter:");
-                    int input3 = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Enter a number for quantity");
-                    int input4 = Convert.ToInt32(Console.ReadLine());
-                    ShoppingCart.ChangeQty(input3, input4);
-                }
+                    try { 
+                        Console.WriteLine("Enter number of the orderline to change quantity to it and then press Enter:");
+                        int input3 = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter a number for quantity");
+                        int input4 = Convert.ToInt32(Console.ReadLine());
+                        ShoppingCart.ChangeQty(input3, input4);
+                    } catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+            }
                 Console.Clear();
 
             }

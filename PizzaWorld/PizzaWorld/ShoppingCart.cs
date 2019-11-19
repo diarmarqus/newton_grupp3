@@ -27,10 +27,13 @@ namespace PizzaWorld
 
         public static void DeleteOrder(int place)
         {
+            if (place >= orderDetails.Count || place < 0) return;
             orderDetails.RemoveAt(place);
         }
         public static void ChangeQty(int place, int change)
         {
+            if (place >= orderDetails.Count || place < 0) return;
+            if (change < 0) return;
             orderDetails[place].qty = change;
 
         }
